@@ -5,14 +5,18 @@ import Header from './components/Header';
 import Intro from './components/Intro';
 import AboutUs from './components/AboutUs';
 import Service from './components/Service';
-import Project from './components/Project';
+//import Project from './components/Project';
 import Footer from './components/Footer';
-import Contact from './components/Contact';
+//import Contact from './components/Contact';
+import Solution from './components/Solution';
+import Partner from './components/Partner';
 
 import ServicePage from "./pages/ServicePage";
 import AboutPage from "./pages/AboutPage";
-import ProjectPage from "./pages/ProjectPage";
+//import ProjectPage from "./pages/ProjectPage";
 import ContactPage from "./pages/ContactPage";
+import SolutionPage from "./pages/SolutionPage";
+
 
 function App() {
     return (
@@ -28,8 +32,8 @@ function App() {
                             <Intro />
                             <AboutUs />
                             <Service />
-                            <Project />
-                            <Contact />
+                            <Solution />
+                            <Partner />
                         </>
                     }
                 />
@@ -40,7 +44,8 @@ function App() {
                 {/* Add more pages later */}
                 {/* <Route path="/product" element={<ProductPage />} /> */}
                 <Route path="/about" element={<AboutPage />} /> 
-                <Route path="/project" element={<ProjectPage />} /> 
+                <Route path="/solution" element={<SolutionPage />} /> 
+                <Route path="/contact" element={<ContactPage />} /> 
 
             </Routes>
 

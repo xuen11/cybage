@@ -240,21 +240,21 @@ const Carousel = () => {
 
                    
 
-                    <button
-                        className="nav-button prev"
-                        onClick={handlePrev}
-                        disabled={isTransitioning}
-                    >
-                        <span className="nav-arrow"></span>
-                    </button>
+                    {/*<button*/}
+                    {/*    className="nav-button prev"*/}
+                    {/*    onClick={handlePrev}*/}
+                    {/*    disabled={isTransitioning}*/}
+                    {/*>*/}
+                    {/*    <span className="nav-arrow"></span>*/}
+                    {/*</button>*/}
 
-                    <button
-                        className="nav-button next"
-                        onClick={handleNext}
-                        disabled={isTransitioning}
-                    >
-                        <span className="nav-arrow"></span>
-                    </button>
+                    {/*<button*/}
+                    {/*    className="nav-button next"*/}
+                    {/*    onClick={handleNext}*/}
+                    {/*    disabled={isTransitioning}*/}
+                    {/*>*/}
+                    {/*    <span className="nav-arrow"></span>*/}
+                    {/*</button>*/}
                 </div>
             </div>
                 </section>

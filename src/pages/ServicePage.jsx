@@ -1,154 +1,382 @@
-﻿import React, { useState, useEffect, useRef } from "react";
+﻿import React, { useState, useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import "/src/App.css";
-
-// Import your images
-import softwareIcon from "/bg1.jpg";
-import electronicIcon from "/bg.jpg";
-import itIcon from "/bg.jpg";
-import consultIcon from "/bg.jpg";
-import supportIcon from "/bg.jpg";
+import { X } from "lucide-react";
 
 const serviceList = [
     {
         id: 1,
-        img:softwareIcon,
-        title: "Smart Software Solution",
+        title: "Smart Software Solutions",
+        pageId: "software-solutions",
+        bannerImage: "/software-banner.jpg",
         pages: [
             {
                 pageNum: 1,
-                title: "Overview",
-                content: "Advanced IoT solutions for smart connectivity and real-time monitoring. We integrate sensors, cloud platforms, and data analytics for industrial and commercial applications.",
-                features: ["IoT Integration", "Cloud Platforms", "Real-time Monitoring"]
+                title: "",
+                content:
+                    "Comprehensive software development services designed to meet diverse business needs. Our solutions range from desktop applications to embedded systems, all built with scalability and performance in mind.",
+                features: [
+                    "Custom Desktop Development",
+                    "Mobile Application Development",
+                    "Web Application Development",
+                    "Big Data Analytics",
+                    "Embedded Software Development"
+                ]
             },
             {
                 pageNum: 2,
-                title: "Capabilities",
-                content: "Custom software development for web, mobile, and embedded systems. We specialize in scalable architectures and enterprise-grade solutions.",
-                features: ["Web Applications", "Mobile Apps", "Embedded Systems", "API Development"]
+                title: "Customized Software Solutions",
+                content:
+                    "Tailored software applications that address specific business challenges. We develop robust solutions for Windows, Cloud, and Web platforms with industry-specific functionalities.",
+                features: ["Window App", "Cloud App", "Web Application"]
             },
             {
                 pageNum: 3,
-                title: "Technologies",
-                content: "Utilizing modern tech stacks including React, Node.js, Python, .NET, and cloud services (AWS, Azure, Google Cloud).",
-                features: ["React/Node.js", "Python/Django", ".NET Core", "Cloud Services"]
+                title: "Work Flow and Traceability Solutions",
+                content:
+                    "Tailored software applications that address specific business challenges. We develop robust solutions for Windows, Cloud, and Web platforms with industry-specific functionalities.",
+                features: [
+                    "Corrective and Preventive Action",
+                    "Inventory Manaagement System",
+                    "Work in Progress Traceability System",
+                    "Barcode Labelling Printing Solutions"
+                ]
+            },
+            {
+                pageNum: 4,
+                title: "Data Acquisition Control & Solutions",
+                content:
+                    "Advanced monitoring and control systems that capture real-time data from equipment and environmental sensors, enabling informed decision-making and operational efficiency.",
+                features: [
+                    "Equipment Monitoring System",
+                    "Temperature Monitoring System",
+                    "RFID Detection System"
+                ]
             }
         ]
     },
     {
         id: 2,
-        icon: electronicIcon,
-        title: "Electronic Device Design",
+        title: "Electronic Device Design / Product Engineering",
+        pageId: "electronic-design",
+        bannerImage:"/engineering.jpg",
         pages: [
             {
                 pageNum: 1,
-                title: "Product Engineering",
-                content: "Streamline your operations with our smart automation solutions. PLC programming, SCADA systems, and process optimization for maximum efficiency.",
-                features: ["PCB Design", "Microcontrollers", "Analog/Digital Devices"]
-            },
-            {
-                pageNum: 2,
-                title: "Engineering Services",
-                content: "Complete electronic engineering services including prototyping, testing, and manufacturing support.",
-                features: ["Prototyping", "Testing", "Fabrication", "Quality Control"]
-            },
-            {
-                pageNum: 3,
-                title: "Automation Design",
-                content: "Design and implementation of industrial automation systems for manufacturing and production lines.",
-                features: ["PLC Programming", "SCADA Systems", "I/O Controllers"]
+                title: "",
+                content: "From concept to production, we provide comprehensive electronic device design and product engineering services. Our expertise spans PCB design, microcontroller systems, and custom hardware solutions tailored to your specific requirements. We bridge the gap between innovative ideas and market-ready products.",
+                features: [
+                    "PCB Design, Drawing and Fabrication",
+                    "Microcontroller Devices, Analog / Digital Devices",
+                    "I/O Controllers",
+                    "Engineering & Fabrication works",
+                    "Automation Design & Implementation"
+                ]
             }
         ]
     },
     {
         id: 3,
-        icon: itIcon,
         title: "Industrial IT Peripheral",
+        pageId: "industrial-it",
         pages: [
             {
                 pageNum: 1,
-                title: "Hardware Solutions",
-                content: "Rugged, durable, high-performance peripheral devices designed for industrial environments.",
-                features: ["Barcode Scanners", "Industrial Printers", "Data Loggers"]
-            },
-            {
-                pageNum: 2,
-                title: "Infrastructure",
-                content: "Complete industrial IT infrastructure setup including workstations, network switches, and backup systems.",
-                features: ["Industrial PCs", "Network Switches", "UPS Systems"]
+                title: "Industrial IT Devices",
+                content:
+                    "Reliable industrial-grade devices designed for durability, performance, and seamless integration.",
+                items: [
+                    {
+                        name: "Barcode Scanners",
+                        image: "/barcodeScanner.jpg",
+                        subItems: [
+                            {
+                                name: "Barcode Scanner",
+                                image: "/barcodeScanner.jpg",
+                                description: "High-speed barcode scanner for industrial use.",
+                                specs: ["Scan speed: 200 scans/sec", "Rugged casing"]
+                            }
+                        ]
+                    },
+                    //{
+                    //    name: "Industrial Workstations",
+                    //    subItems: [
+                    //        {
+                    //            name: "Workstation Type A",
+                    //            image: "/img/industrial/workstationA.jpg",
+                    //            description: "Heavy-duty workstation with fanless design.",
+                    //            specs: ["Fanless design", "Wide temp range", "IP65 options"]
+                    //        },
+                    //        {
+                    //            name: "Workstation Type B",
+                    //            image: "/img/industrial/workstationB.jpg",
+                    //            description:
+                    //                "High-performance workstation for industrial use.",
+                    //            specs: ["Powerful CPU", "Rugged metal casing"]
+                    //        }
+                    //    ]
+                    //},
+                    {
+                        name: "Network Switch & ETC",
+                        image: "/huns.jpg",
+                        subItems: [
+                            {
+                                name: "Huns & Switch",
+                                image: "/huns.jpg",
+                                description:
+                                    "High-performance workstation for industrial use.",
+                                specs: ["Powerful CPU", "Rugged metal casing"]
+                               
+                            },
+                            {
+                                name: "KUM Switch Products",
+                                image: "/kum.jpg",
+                                description:
+                                    "High-performance workstation for industrial use.",
+                                specs: ["Powerful CPU", "Rugged metal casing"]
+                               
+                            },
+                            {
+                                name: "Routers",
+                                image: "/router.jpg",
+                                description:
+                                    "High-performance workstation for industrial use.",
+                                specs: ["Powerful CPU", "Rugged metal casing"]
+                            }
+
+                        ]
+                    },
+                    {
+                        name: "Industrial Barcode Printer",
+                        image: "/barcode-printer.jpg",
+                        subItems: [
+                            {
+                                name: "Barcode Printer",
+                                image: "/barcode-printer.jpg"
+                            },
+                            {
+                                name: "Ribbons",
+                                image: "/ribbon.jpg"
+                            },
+                            {
+                                name: "Labels",
+                                image: "/label.jpg"
+                            }
+
+                        ]
+                    },
+                    {
+                        name: "Software ",
+                        image: "/computer-software.jpg",
+                        subItems: [
+                            { 
+                                name: "Software (Win7 , Win 10, Adobe, Antivirus, etc)",
+                                image:"/computer-software.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        name: "Storage",
+                        image: "/NAS.jpg",
+                        subItems: [
+                            {
+                                name: "Network Access Storage (NAS)",
+                                image: "/NAS.jpg"
+                            },
+                            {
+                                name: "Harddisk",
+                                image: "/harddisk.jpg"
+                            },
+                            {
+                                name: "SSD",
+                                image:"/ssd.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        name: "Customized I/O Terminals",
+                        image: "/pt2.jpeg",
+                        subItems: [
+                            {
+                                name: "PT2",
+                                image:"/pt2.jpeg"
+                            },
+                            {
+                                name: "Latte ( Tablet - Windows |  Linux )",
+                                image: "/latte.jpg"
+                            },
+                            {
+                                name: "Raspberry Pi (Tablet - Windows | Linux)",
+                                image: "/raspberrypi.png"
+                            }
+                        ]
+                    },
+                    {
+                        name: "Industrial Computer/ PC/ Tablet",
+                        image: "/industrial-pc.jpg",
+                        subItems: [
+                            {
+                                name: "Industrial PC",
+                                image:"/industrial-pc.jpg"
+                            },
+                            {
+                                name: "Embedded PC",
+                                image: "/embedded-pc.jpg"
+                            },
+                            {
+                                name: "Table",
+                                image: "/tablet.jpg"
+                            }
+                        ]
+                    },
+                    {
+                        name: "UPS and Backups",
+                        image: "/battery-backup.jpg",
+                        subItems: [
+                            {
+                                name: "Battery Backup",
+                                image: "/battery-backup.jpg"
+                            },
+                            {
+                                name: "Battery Ups",
+                                image: "/battery-ups.jpg"
+                            }
+                          
+                        ]
+                    },
+                    {
+                        name: " Cloud Hosting Reseller",
+                        image: "/cloudHosting.png",
+                        
+                        
+                    },
+                ]
             }
         ]
     },
     {
         id: 4,
-        icon: consultIcon,
-        title: "IT Consultations",
+        title: "IT Technology Consultation & Training",
+        pageId: "it-consultation",
         pages: [
             {
                 pageNum: 1,
                 title: "Strategy & Planning",
-                content: "Align IT with business goals through digital transformation roadmaps and technology risk management.",
-                features: ["IT Strategy", "Digital Transformation", "Cloud Adoption"]
+                content:
+                    "Align IT with business goals through digital transformation roadmaps and technology risk management.",
+                features: [
+                    "IT Strategy",
+                    "Digital Transformation",
+                    "Cloud Adoption",
+                    "Technology risk management"
+                ]
             },
             {
                 pageNum: 2,
-                title: "Implementation",
-                content: "Project management and implementation support from planning to execution with Agile/Scrum methodologies.",
-                features: ["Project Management", "Agile Leadership", "Vendor Management"]
+                title: "Infrastructure Design and Optimization",
+                content: "Design or improve the backbone of the IT environment.",
+                features: [
+                    "Network architecture design",
+                    "Server and storage optimization",
+                    "Cloud infrastructure Setup",
+                    "Hybrid IT Environments"
+                ]
+            },
+            {
+                pageNum: 3,
+                title: "Software & Application Advisory",
+                content: "Choose or develop the right software for operations.",
+                features: [
+                    "Software selection",
+                    "Custom software development planning",
+                    "Integration strategy",
+                    "Application modernization"
+                ]
+            },
+            {
+                pageNum: 4,
+                title: "IT Project Management & Implementation Support",
+                content: "Guide technology projects from planning to execution.",
+                features: [
+                    "PMO setup",
+                    "Agile/Scrum project leadership",
+                    "Risk and change management",
+                    "Vendor management"
+                ]
             }
         ]
     },
     {
         id: 5,
-        icon: supportIcon,
         title: "Maintenance & Support",
+        image:"/maintenance1.jpg",
+        pageId: "maintenance-support",
         pages: [
             {
                 pageNum: 1,
                 title: "Hardware Maintenance",
-                content: "Expert repair and maintenance for industrial label printers (Zebra, TSC, Godexx, Novexx, Cab). Certified technicians ensure minimal downtime.",
-                features: ["Printer Repair", "Electronic Modules", "Industrial PCs"]
+                content:
+                    "Expert repair and maintenance for industrial label printers (Zebra, TSC, Godexx, Novexx, Cab). Certified technicians ensure minimal downtime.",
+                features: [
+                    "Industrial Barcode Printers Service & Repairs (Novexx, Zebra, Godexx, TSC, Cab)",
+                    "Troubleshooting and repair of electronic modules & system",
+                    "Supply and custom configuration of electrical, electronic, and pneumatic components",
+                    "Solar Inverter Terminals",
+                    "Electrical project maintenance",
+                    "Industrial PC repair and maintenance"
+                ]
             },
             {
                 pageNum: 2,
                 title: "Support Services",
-                content: "Ongoing technical support, troubleshooting, and preventive maintenance for all your industrial equipment.",
-                features: ["24/7 Support", "Preventive Maintenance", "Spare Parts Supply"]
+                content:
+                    "Ongoing technical support, troubleshooting, and preventive maintenance for all your industrial equipment.",
+                features: ["24/7 Support", "Preventive Maintenance"]
             }
         ]
-    },
+    }
 ];
 
 const ServicePage = () => {
+    const [searchParams] = useSearchParams();
+    const serviceParam = searchParams.get("service");
+
+    const navigate = useNavigate();
+
     const [overlayOpacity, setOverlayOpacity] = useState(0);
     const [selectedService, setSelectedService] = useState(null);
-    const [isBookVisible, setIsBookVisible] = useState(false);
-    const [isAnimating, setIsAnimating] = useState(false);
-    const [clickAnimation, setClickAnimation] = useState(false);
-    const [currentPage, setCurrentPage] = useState(0);
-    const [isTurningPage, setIsTurningPage] = useState(false);
-    const [pageDirection, setPageDirection] = useState('next'); // 'next' or 'prev'
-    const bookRef = useRef(null);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isModalScrolling, setIsModalScrolling] = useState(false);
+    const [hasAutoOpened, setHasAutoOpened] = useState(false);
+    const [isFromHomepage, setIsFromHomepage] = useState(false);
+    const [fakeScroll, setFakeScroll] = useState(0);
+    const [selectedCategory, setSelectedCategory] = useState(null);
+    const [selectedItem, setSelectedItem] = useState(null);
 
+    // Auto open when navigating from homepage
     useEffect(() => {
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-            const startFade = 200;
-            const endFade = 600;
+        if (serviceParam && !hasAutoOpened) {
+            const foundService = serviceList.find(
+                (service) =>
+                    service.id.toString() === serviceParam ||
+                    service.pageId === serviceParam
+            );
 
-            if (scrollPosition < startFade) {
-                setOverlayOpacity(0);
-            } else if (scrollPosition > endFade) {
+            if (foundService) {
+                setIsFromHomepage(true);
                 setOverlayOpacity(1);
-            } else {
-                const opacity = (scrollPosition - startFade) / (endFade - startFade);
-                setOverlayOpacity(opacity);
+                setFakeScroll(800);
+
+                setTimeout(() => {
+                    setSelectedService(foundService);
+                    setIsModalVisible(true);
+                    setHasAutoOpened(true);
+                }, 300);
             }
-        };
+        }
+    }, [serviceParam, hasAutoOpened]);
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
-
+    // Disable scroll behind page
     useEffect(() => {
         document.body.style.overflow = "hidden";
         return () => {
@@ -156,123 +384,87 @@ const ServicePage = () => {
         };
     }, []);
 
+    // Black overlay scrolling logic
     useEffect(() => {
-        let fakeScroll = 0;
-
         const handleWheel = (e) => {
-            fakeScroll += e.deltaY;
-            if (fakeScroll < 0) fakeScroll = 0;
-            if (fakeScroll > 800) fakeScroll = 800;
+            if (isModalScrolling) return;
+
+            const newFakeScroll = Math.max(
+                0,
+                Math.min(800, fakeScroll + e.deltaY)
+            );
+            setFakeScroll(newFakeScroll);
 
             const startFade = 200;
             const endFade = 600;
 
-            if (fakeScroll < startFade) {
-                setOverlayOpacity(0);
-            } else if (fakeScroll > endFade) {
-                setOverlayOpacity(1);
-            } else {
-                const opacity = (fakeScroll - startFade) / (endFade - startFade);
-                setOverlayOpacity(opacity);
-            }
+            if (newFakeScroll < startFade) setOverlayOpacity(0);
+            else if (newFakeScroll > endFade) setOverlayOpacity(1);
+            else
+                setOverlayOpacity(
+                    (newFakeScroll - startFade) / (endFade - startFade)
+                );
         };
 
         window.addEventListener("wheel", handleWheel, { passive: false });
         return () => window.removeEventListener("wheel", handleWheel);
-    }, []);
+    }, [fakeScroll, isModalScrolling]);
 
-    const playClickAnimation = () => {
-        setClickAnimation(true);
-        setTimeout(() => {
-            setClickAnimation(false);
-        }, 300);
-    };
-
-    const openBook = (service) => {
-        if (isAnimating) return;
-
-        playClickAnimation();
-
-        const clickedElement = document.querySelector(`[data-service-id="${service.id}"]`);
-        let clickX = window.innerWidth / 2;
-        let clickY = window.innerHeight / 2;
-
-        if (clickedElement) {
-            const rect = clickedElement.getBoundingClientRect();
-            clickX = rect.left + rect.width / 2;
-            clickY = rect.top + rect.height / 2;
-        }
-
-        setIsAnimating(true);
+    // Open service modal
+    const openModal = (service) => {
         setSelectedService(service);
-        setCurrentPage(0); // Reset to first page
-
-        document.documentElement.style.setProperty('--click-x', `${clickX}px`);
-        document.documentElement.style.setProperty('--click-y', `${clickY}px`);
-
-        setTimeout(() => {
-            setIsBookVisible(true);
-
-            setTimeout(() => {
-                setIsAnimating(false);
-            }, 1000);
-        }, 500);
+        setTimeout(() => setIsModalVisible(true), 100);
     };
 
-    const closeBook = () => {
-        if (isAnimating) return;
-
-        setIsAnimating(true);
-        playClickAnimation();
+    // Close modal
+    const closeModal = () => {
+        setIsModalVisible(false);
 
         setTimeout(() => {
-            setIsBookVisible(false);
+            setSelectedService(null);
+            setSelectedCategory(null);
+            setSelectedItem(null);
+            setIsModalScrolling(false);
 
-            setTimeout(() => {
-                setSelectedService(null);
-                setCurrentPage(0);
-                setIsAnimating(false);
-            }, 500);
-        }, 100);
-    };
-
-    const turnPage = (direction) => {
-        if (!selectedService || isTurningPage) return;
-
-        setIsTurningPage(true);
-        setPageDirection(direction);
-
-        setTimeout(() => {
-            if (direction === 'next') {
-                setCurrentPage(prev => Math.min(prev + 1, selectedService.pages.length - 1));
-            } else {
-                setCurrentPage(prev => Math.max(prev - 1, 0));
+            if (isFromHomepage) {
+                setOverlayOpacity(1);
+                setFakeScroll(800);
+                setIsFromHomepage(false);
             }
-
-            setTimeout(() => {
-                setIsTurningPage(false);
-            }, 500);
         }, 300);
     };
 
-    const canGoNext = selectedService && currentPage < selectedService.pages.length - 1;
-    const canGoPrev = currentPage > 0;
+    // Detect scroll of modal content
+    const handleModalWheel = () => {
+        setIsModalScrolling(true);
+
+        clearTimeout(window.modalScrollTimeout);
+        window.modalScrollTimeout = setTimeout(
+            () => setIsModalScrolling(false),
+            100
+        );
+    };
 
     return (
         <div className="srvc-page-wrapper">
-            {/* Click Ripple Animation */}
-            {clickAnimation && <div className="click-ripple"></div>}
-
-            {/* Main Content */}
+            {/* HERO SECTION */}
             <div className="srvc-main-content">
                 <div className="service-page-container">
                     <div className="service-hero-wrapper">
                         <div className="service-hero-section">
-                            <div className="service-nav"></div>
                             <div className="service-hero-content">
                                 <span className="service-badge">Our Services</span>
-                                <h1 className="service-hero-title">What Services We Offer</h1>
-                                <h2 className="service-hero-desc">At Cybage Technologies, we transform your technological vision into reality. Our comprehensive suite of IoT-driven solutions and specialized services are designed to optimize operations, enhance efficiency, and drive sustainable growth for businesses across industries.</h2>
+
+                                <h1 className="service-hero-title">
+                                    What Services We Offer
+                                </h1>
+
+                                <h2 className="service-hero-desc">
+                                    At Cybage Technologies, we transform your technological
+                                    vision into reality. Our comprehensive suite of IoT-driven
+                                    solutions and specialized services are designed to optimize
+                                    operations, enhance efficiency, and drive sustainable growth.
+                                </h2>
 
                                 <div className="scroll-indicator">
                                     <p>Scroll down to explore our services</p>
@@ -281,259 +473,224 @@ const ServicePage = () => {
                             </div>
                         </div>
 
+                        {/* SERVICE CARDS */}
                         <div className="service-cards-container">
                             <div className="service-card-item">
-                                <h3 className="service-card-title">Customized Software Development</h3>
-                                <p className="service-card-text">Tailored software solutions—web, mobile, and embedded systems—transforming ideas into scalable, cost-effective digital products.</p>
+                                <h3 className="service-card-title">
+                                    Customized Software Development
+                                </h3>
+
+                                <p className="service-card-text">
+                                    Tailored software solutions—web, mobile, and embedded
+                                    systems—transforming ideas into scalable, cost-effective
+                                    digital products.
+                                </p>
                             </div>
 
                             <div className="service-card-item service-card-highlight">
-                                <h3 className="service-card-title">Industrial Automation & IoT System</h3>
-                                <p className="service-card-text">IoT device integration, sensor networks, and data acquisition to automate workflows and monitor operations across manufacturing and logistics.</p>
+                                <h3 className="service-card-title">
+                                    Industrial Automation & IoT System
+                                </h3>
+
+                                <p className="service-card-text">
+                                    IoT device integration, sensor networks, and data
+                                    acquisition to automate workflows and monitor operations.
+                                </p>
                             </div>
 
                             <div className="service-card-item">
-                                <h3 className="service-card-title">Electronic Engineering & IT Support</h3>
-                                <p className="service-card-text">End-to-end engineering—from PCB design and fabrication to printer repair and IT infrastructure—keeping industrial systems running reliably.</p>
+                                <h3 className="service-card-title">
+                                    Electronic Engineering & IT Support
+                                </h3>
+
+                                <p className="service-card-text">
+                                    End-to-end engineering—from PCB design and fabrication
+                                    to printer repair and IT infrastructure.
+                                </p>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <div style={{ height: "800px" }}></div>
             </div>
 
-            {/* Black Overlay with Services */}
+            {/* BLACK OVERLAY WITH SERVICE LIST */}
             <div
                 className="srvc-overlay-scroll"
                 style={{
                     opacity: overlayOpacity,
-                    pointerEvents: overlayOpacity > 0.3 ? 'auto' : 'none'
+                    pointerEvents: overlayOpacity > 0.3 ? "auto" : "none",
+                    transform: `translateY(${Math.min(0, 800 - fakeScroll)}px)`
                 }}
             >
                 <div className="srvc-overlay-content">
-                    <p className="srvc-overlay-subtitle">Click any service to learn more</p>
+                    <p className="srvc-overlay-subtitle">
+                        Click any service to learn more
+                    </p>
 
                     <div className="srvc-overlay-grid-five">
                         {serviceList.map((service, index) => (
                             <div
                                 key={service.id}
-                                data-service-id={service.id}
                                 className="srvc-overlay-item clickable-card"
-                                onClick={() => openBook(service)}
-                                style={{
-                                    animationDelay: `${index * 0.1}s`
-                                }}
+                                onClick={() => openModal(service)}
+                                style={{ animationDelay: `${index * 0.1}s` }}
                             >
-                                <div className="srvc-item-icon-wrapper">
-                                    <img
-                                        src={service.icon}
-                                        alt={service.title}
-                                        className="srvc-item-icon-img"
-                                    />
-                                </div>
                                 <div className="srvc-item-title">{service.title}</div>
-                                <div className="page-count-badge">
-                                    {service.pages.length} {service.pages.length === 1 ? 'page' : 'pages'}
-                                </div>
-                                <div className="click-indicator">Click to open</div>
                             </div>
                         ))}
                     </div>
                 </div>
             </div>
 
-            {/* Book Animation Overlay */}
-            <div
-                className={`book-overlay ${isBookVisible ? 'visible' : ''}`}
-                onClick={closeBook}
-                ref={bookRef}
-            >
-                {/* Book Animation Overlay */}
-                {/* Book Animation Overlay */}
-                {selectedService && (
+            {/* SERVICE MODAL */}
+            {selectedService && (
+                <div
+                    className={`simple-unstyled-modal-overlay ${isModalVisible ? "visible" : ""
+                        }`}
+                    onClick={closeModal}
+                    onWheel={handleModalWheel}
+                >
                     <div
-                        className={`book-overlay ${isBookVisible ? "visible" : ""}`}
-                        onClick={closeBook}
+                        className="simple-unstyled-modal"
+                        onClick={(e) => e.stopPropagation()}
+                        onWheel={(e) => e.stopPropagation()}
                     >
-                        <div
-                            className={`flippable-book-container-wrapper ${isBookVisible ? "visible" : ""}`}
-                            onClick={(e) => e.stopPropagation()}
+                        <button
+                            className="simple-unstyled-close-btn"
+                            onClick={closeModal}
                         >
-                            <div className="flippable-book-container">
+                            <X size={24} />
+                        </button>
 
-                                {/* Page Turn Flash */}
-                                <div className="flippable-page-turn-effect"></div>
+                        <h2 className="simple-unstyled-service-title">
+                            {selectedService.title}
+                        </h2>
 
-                                {/* LEFT PAGE */}
-                                <div
-                                    className={`flippable-book-page flippable-book-left 
-                    ${isTurningPage ? "turning" : ""} ${pageDirection}`}
-                                >
-                                    <div className="flippable-book-content-wrapper">
-                                        <div className="flippable-page-content">
-                                            <div className="flippable-page-header">
-                                                <div className="flippable-page-number">
-                                                    Page {selectedService.pages[currentPage].pageNum} of{" "}
-                                                    {selectedService.pages.length}
-                                                </div>
-                                                <h2 className="flippable-page-title">
-                                                    {selectedService.pages[currentPage].title}
-                                                </h2>
-                                            </div>
+                        <div className="simple-unstyled-content">
+                            {/* NORMAL PAGE CONTENT */}
+                            {selectedService.pages.map((page, index) => (
+                                <div key={page.pageNum} className="simple-unstyled-page">
+                                    <h3>{page.title}</h3>
+                                    <p>{page.content}</p>
 
-                                            <div className="flippable-page-body">
-                                                <p>{selectedService.pages[currentPage].content}</p>
-
-                                                {selectedService.pages[currentPage].features && (
-                                                    <div className="flippable-page-features">
-                                                        <h4>Key Features:</h4>
-                                                        <ul>
-                                                            {selectedService.pages[currentPage].features.map((f, i) => (
-                                                                <li key={i}>{f}</li>
-                                                            ))}
-                                                        </ul>
-                                                    </div>
-                                                )}
-                                            </div>
-
-                                            <div className="flippable-page-footer">
-                                                <div className="flippable-page-nav">
-
-                                                    {/* PREV */}
-                                                    <button
-                                                        className={`flippable-page-nav-btn flippable-page-nav-prev ${currentPage === 0 ? "disabled" : ""
-                                                            }`}
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            if (currentPage > 0) turnPage("prev");
-                                                        }}
-                                                        disabled={currentPage === 0}
-                                                    >
-                                                        ← Previous
-                                                    </button>
-
-                                                    {/* DOTS */}
-                                                    <div className="flippable-page-dots">
-                                                        {selectedService.pages.map((_, idx) => (
-                                                            <span
-                                                                key={idx}
-                                                                className={`flippable-page-dot ${idx === currentPage ? "active" : ""
-                                                                    }`}
-                                                                onClick={(e) => {
-                                                                    e.stopPropagation();
-                                                                    if (idx !== currentPage) {
-                                                                        const dir = idx > currentPage ? "next" : "prev";
-                                                                        setPageDirection(dir);
-                                                                        setIsTurningPage(true);
-                                                                        setTimeout(() => {
-                                                                            setCurrentPage(idx);
-                                                                            setTimeout(() => setIsTurningPage(false), 500);
-                                                                        }, 300);
-                                                                    }
-                                                                }}
-                                                            />
-                                                        ))}
-                                                    </div>
-
-                                                    {/* NEXT */}
-                                                    <button
-                                                        className={`flippable-page-nav-btn ${currentPage === selectedService.pages.length - 1 ? "disabled" : ""
-                                                            }`}
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            if (currentPage < selectedService.pages.length - 1)
-                                                                turnPage("next");
-                                                        }}
-                                                        disabled={currentPage === selectedService.pages.length - 1}
-                                                    >
-                                                        Next →
-                                                    </button>
-
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-
-                                    {/* CORNER FLIP */}
-                                    {currentPage < selectedService.pages.length - 1 && (
-                                        <div
-                                            className="flippable-page-corner flippable"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                turnPage("next");
-                                            }}
-                                        >
-                                            <div className="flippable-corner-hint">
-                                                <span>Next Page</span>
-                                                <div className="flippable-corner-arrow">↖</div>
-                                            </div>
-                                        </div>
+                                    {page.features && page.features.length > 0 && (
+                                        <ul className="features-list">
+                                            {page.features.map((feature, idx) => (
+                                                <li key={idx}>{feature}</li>
+                                            ))}
+                                        </ul>
                                     )}
-                                </div>
 
-                                {/* RIGHT PAGE */}
-                                <div
-                                    className={`flippable-book-page flippable-book-right 
-                    ${isTurningPage ? "turning" : ""} ${pageDirection}`}
-                                >
-                                    <div className="flippable-book-content-wrapper flippable-next-page-preview">
-                                        {currentPage < selectedService.pages.length - 1 ? (
-                                            <div className="flippable-next-page-content">
-                                                <h3>Next: {selectedService.pages[currentPage + 1].title}</h3>
-                                                <p>{selectedService.pages[currentPage + 1].content.substring(0, 150)}...</p>
-                                                <div className="flippable-next-page-hint">Click corner to turn →</div>
-                                            </div>
-                                        ) : (
-                                            <div className="flippable-book-cover-content">
-                                                <img src={selectedService.icon} alt={selectedService.title} />
-                                                <h2>{selectedService.title}</h2>
-                                                <p>Service Details</p>
-                                                <div>Total Pages: {selectedService.pages.length}</div>
-                                            </div>
+
+                                    {page.items &&
+                                        !selectedCategory &&
+                                        !selectedItem && (
+                                        <div className="svcfs-item-row">
+                                            {page.items.map((item, i) => (
+                                                <div
+                                                    key={i}
+                                                    className="svcfs-item-card"
+                                                    onClick={() =>
+                                                        item.subItems
+                                                            ? setSelectedCategory(item)
+                                                            : setSelectedItem(item)
+                                                    }
+                                                >
+                                                    {item.image && (
+                                                        <img src={item.image} alt={item.name} className="svcfs-item-img" />
+                                                    )}
+                                                    <h4>{item.name}</h4>
+                                                </div>
+                                            ))}
+                                        </div>
+
                                         )}
+
+                                    {index < selectedService.pages.length - 1 && <hr />}
+                                </div>
+                            ))}
+
+                            {/* CATEGORY MODAL */}
+                            {selectedCategory && !selectedItem && (
+                                <div
+                                    className="svcfs-item-overlay"
+                                    onClick={() => setSelectedCategory(null)}
+                                >
+                                    <div
+                                        className="svcfs-item-modal"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <button
+                                            className="svcfs-item-close"
+                                            onClick={() => setSelectedCategory(null)}
+                                        >
+                                            <X size={24} />
+                                        </button>
+
+                                        <h2>{selectedCategory.name}</h2>
+
+                                        <div className="svcfs-subitem-grid">
+                                            {selectedCategory.subItems.map(
+                                                (subItem, index) => (
+                                                    <div
+                                                        key={index}
+                                                        className="svcfs-subitem-card"
+                                                        
+                                                    >
+                                                        <img
+                                                            src={subItem.image}
+                                                            className="svcfs-subitem-img"
+                                                        />
+
+                                                        <h3>{subItem.name}</h3>
+                                                    </div>
+                                                )
+                                            )}
+                                        </div>
                                     </div>
                                 </div>
+                            )}
 
-                                <div className="flippable-book-spine"></div>
-                                <div className="flippable-book-glow"></div>
-                            </div>
+                           
+                            {selectedItem && (
+                                <div
+                                    className="svcfs-item-overlay"
+                                    onClick={() => setSelectedItem(null)}
+                                >
+                                    <div
+                                        className="svcfs-item-modal"
+                                        onClick={(e) => e.stopPropagation()}
+                                    >
+                                        <button
+                                            className="svcfs-item-close"
+                                            onClick={() => setSelectedItem(null)}
+                                        >
+                                            <X size={24} />
+                                        </button>
+
+                                        <div className="svcfs-item-content">
+                                            <img
+                                                src={selectedItem.image}
+                                                className="svcfs-item-img"
+                                            />
+
+                                            <h2>{selectedItem.name}</h2>
+
+                                            <p>{selectedItem.description}</p>
+
+                                            <ul className="svcfs-spec-list">
+                                                {selectedItem.specs.map((s, i) => (
+                                                    <li key={i}>{s}</li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
-                )}
-
-
-                <style jsx>{`
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(10px); }
-    }
-    .scroll-arrow { animation: bounce 2s infinite; }
-`}</style>
-
-
-            <style jsx>{`
-                @keyframes bounce {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(10px); }
-                }
-                .scroll-indicator {
-                    text-align: center;
-                    padding: 60px 0;
-                    color: white;
-                }
-                .scroll-indicator p {
-                    font-size: 18px;
-                    margin-bottom: 20px;
-                    opacity: 0.8;
-                }
-                .scroll-arrow {
-                    font-size: 30px;
-                    animation: bounce 2s infinite;
-                }
-            `}</style>
-        </div>
+                </div>
+            )}
         </div>
     );
 };
