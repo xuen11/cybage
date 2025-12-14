@@ -1,5 +1,7 @@
 ﻿import React, { useEffect, useRef, useState } from "react";
 import "/src/App.css";
+import { Link } from "react-router-dom";
+
 
 const AboutUs = () => {
     const aboutRef = useRef(null);
