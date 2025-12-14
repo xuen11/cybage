@@ -58,10 +58,13 @@ const AboutUs = () => {
                         <p className={`description ${isVisible ? 'cyb-anim-text-reveal' : ''}`}>
                             Cybage Technologies Sdn Bhd is a technology innovator specializing in IoT, custom software, and industrial automation. Since 2017, we have delivered smart, reliable solutions that bridge ideas and implementation with a focus on quality and client success.
                         </p>
-                        <a href="/about" className={`read-more ${isVisible ? 'cyb-anim-btn-ascend' : ''}`}>
+                        <Link
+                            to="/about"
+                            className={`read-more ${isVisible ? 'cyb-anim-btn-ascend' : ''}`}
+                        >
                             <span>Read more</span>
                             <span className="arrow-circle"></span>
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </div>

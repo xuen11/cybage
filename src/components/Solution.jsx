@@ -111,7 +111,11 @@ const SolutionSection = () => {
                         </div>
 
                         {/* Contact Section */}
-                        <div className="cyb-contact-section">
+                        
+                    </div>
+                </div>
+            </div>
+            <div className="cyb-contact-section">
                             <h4 className="cyb-contact-title">Interested in Our Solutions?</h4>
                             <p className="cyb-contact-text">
                                 Contact us to learn how we can help your business grow globally.
@@ -120,9 +124,6 @@ const SolutionSection = () => {
                                 Contact Us
                             </Link>
                         </div>
-                    </div>
-                </div>
-            </div>
         </section>
     );
 };

@@ -7,12 +7,11 @@ export default function Intro() {
     const [isExiting, setIsExiting] = useState(false);
 
     const words = [
-        'IoT Systems',
-        'Industrial Automation',
-        'Custom Software',
-        'Electronic Engineering',
-        'Smart Manufacturing',
-        'Digital Solutions'
+        'Smart Software Solutions',
+        'Electronic Device Design',
+        'IT Technology Consultations',
+        'Industrial IT Peripheral',
+        'Maintenance & Support'
     ];
 
     useEffect(() => {
