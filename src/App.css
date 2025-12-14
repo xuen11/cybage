@@ -1940,6 +1940,7 @@ h1.cyb-anim-quote-fade,
     transition: color 0.3s ease;
 }
 
+
 .cyb-contact-section {
     background-image:url("/contact.jpg");
     padding-top: 2rem;
@@ -2227,21 +2228,6 @@ h1.cyb-anim-quote-fade,
     z-index: 1;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Modal */
 .solution-modal {
     position: fixed;
@@ -2362,13 +2348,15 @@ h1.cyb-anim-quote-fade,
 
 /* Contact Box */
 .cyb-contact-section {
-    margin-top: 80px;
+    margin-top:80px;
     padding: 30px;
     background: url('/contactSection.jpg') center/cover no-repeat, /* Image fills container */
     #eef4ff; /* Fallback color */
     position: relative;
     min-height: 250px;
-    align-content:center;
+    align-content: center;
+    text-align: center;
+    margin-bottom:0px;
 }
 
 
@@ -2658,6 +2646,17 @@ h1.cyb-anim-quote-fade,
         border-color: #667eea;
         color: #667eea;
     }
+
+.cyb-contact-solution {
+    margin-top: 80px;
+    padding: 30px;
+    background: url('/contactSection.jpg') center/cover no-repeat, /* Image fills container */
+    #eef4ff; /* Fallback color */
+    position: relative;
+    min-height: 250px;
+    align-content: center;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -1,9 +1,9 @@
 ﻿import React, { useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { Link } from "react-router-dom";
 import "/src/App.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-
 
 // Marker Icon
 const markerIcon = new L.Icon({
@@ -92,7 +92,8 @@ const SolutionSection = () => {
                         </h3>
 
                         <p className="cyb-info-description">
-We deliver innovative technology solutions to businesses worldwide, driving growth and success across continents.                        </p>
+                            We deliver innovative technology solutions to businesses worldwide, driving growth and success across continents.
+                        </p>
 
                         {/* Country List */}
                         <div className="cyb-countries-list">
@@ -110,16 +111,18 @@ We deliver innovative technology solutions to businesses worldwide, driving grow
                         </div>
 
                         {/* Contact Section */}
-                       
-                    </div>
-                </div> 
-            </div><div className="cyb-contact-section">
+                        <div className="cyb-contact-section">
                             <h4 className="cyb-contact-title">Interested in Our Solutions?</h4>
                             <p className="cyb-contact-text">
                                 Contact us to learn how we can help your business grow globally.
                             </p>
-                            <a className="cyb-contact-btn" href="/contact">Contact Us</a>
+                            <Link to="/contact" className="cyb-contact-btn">
+                                Contact Us
+                            </Link>
                         </div>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 };

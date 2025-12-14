@@ -1,10 +1,22 @@
 ﻿import React from "react";
+import { Link, useLocation } from "react-router-dom";
 import "/src/App.css";
 
 export default function Footer() {
+    const location = useLocation();
+
+    // Force scroll to top if clicking current page
+    const handleCurrentPageClick = (path) => {
+        if (location.pathname === path) {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+            });
+        }
+    };
+
     return (
         <footer className="footer-container">
-            {/* Diagonal top edge */}
             <div className="footer-diagonal"></div>
 
             <div className="footer-content">
@@ -13,37 +25,30 @@ export default function Footer() {
                     {/* Company Info */}
                     <div className="footer-column">
                         <div className="footer-logo">
-                            <img className="footer-logo-icon" src="/logo.jpg"></img>
+                            <Link
+                                to="/"
+                                onClick={() => handleCurrentPageClick("/")}
+                            >
+                                <img
+                                    className="footer-logo-icon"
+                                    src="/logo.jpg"
+                                    alt="Cybage Technologies Logo"
+                                />
+                            </Link>
                         </div>
 
                         <p className="footer-description">
-                            “Innovator in IoT, Empowered by Innovation” 
-
+                            “Innovator in IoT, Empowered by Innovation”
                         </p>
 
                         <div className="footer-info-list">
                             <div className="footer-info-item">
-                                {/*<span className="footer-info-icon">📍</span>*/}
-                                <span>
-                                    21-1, Jalan SW21, Taman Sutera Wangi,<br />
-                                    Batu Berendam 75350 Melaka, Malaysia
-                                </span>
+                                21-1, Jalan SW21, Taman Sutera Wangi,<br />
+                                Batu Berendam 75350 Melaka, Malaysia
                             </div>
-
-                            <div className="footer-info-item">
-                                {/*<span className="footer-info-icon">📞</span>*/}
-                                <span>+6016-7978042</span>
-                            </div>
-
-                            <div className="footer-info-item">
-                                {/*<span className="footer-info-icon">📧</span>*/}
-                                <span>enquiry@cybagetech.com.my</span>
-                            </div>
-
-                            <div className="footer-info-item">
-                                {/*<span className="footer-info-icon">🌐</span>*/}
-                                <span>www.cybagetech.com.my</span>
-                            </div>
+                            <div className="footer-info-item">+6016-7978042</div>
+                            <div className="footer-info-item">enquiry@cybagetech.com.my</div>
+                            <div className="footer-info-item">www.cybagetech.com.my</div>
                         </div>
                     </div>
 
@@ -51,23 +56,63 @@ export default function Footer() {
                     <div className="footer-column">
                         <h3 className="footer-title">Explore</h3>
                         <ul className="footer-links">
-                            <li><a href="/">Home</a></li>
-                            <li><a href="/about">About Us</a></li>
-                            <li><a href="/services">Our Services</a></li>
-                            <li><a href="/project">Projects</a></li>
-                            <li><a href="/contact">Contact Us</a></li>
+                            <li>
+                                <Link to="/" onClick={() => handleCurrentPageClick("/")}>
+                                    Home
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/about" onClick={() => handleCurrentPageClick("/about")}>
+                                    About Us
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/services" onClick={() => handleCurrentPageClick("/services")}>
+                                    Our Services
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/project" onClick={() => handleCurrentPageClick("/project")}>
+                                    Projects
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/contact" onClick={() => handleCurrentPageClick("/contact")}>
+                                    Contact Us
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Quick Links (service anchors) */}
                     <div className="footer-column">
                         <h3 className="footer-title">Quick Links</h3>
                         <ul className="footer-links">
-                            <li><a href="#iot">IoT Systems</a></li>
-                            <li><a href="#automation">Industrial Automation</a></li>
-                            <li><a href="#software">Custom Software</a></li>
-                            <li><a href="#engineering">Electronic Engineering</a></li>
-                            <li><a href="#consulting">IT Consulting</a></li>
+                            <li>
+                                <Link to="/services?service=software-solutions">
+                                    Smart Software Solutions
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/services?service=electronic-design">
+                                    Electronic Device Design / Product Engineering
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/services?service=industrial-it">
+                                    Industrial IT Peripheral
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/services?service=it-consultation">
+                                    IT Technology Consultation & Training
+                                </Link>
+                            </li>
+                            <li>
+                                <Link to="/services?service=maintenance-support">
+                                    Maintenance & Support
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
@@ -76,7 +121,8 @@ export default function Footer() {
                 {/* Copyright */}
                 <div className="footer-bottom">
                     <p>
-                        © {new Date().getFullYear()} Cybage Technologies Sdn Bhd. All rights reserved. | Since 2017
+                        © {new Date().getFullYear()} Cybage Technologies Sdn Bhd.
+                        All rights reserved. | Since 2017
                     </p>
                 </div>
             </div>

@@ -237,7 +237,9 @@ const SolutionPage = () => {
                 <p className="cyb-contact-text">
                     Contact us to learn how we can help your business grow globally.
                 </p>
-                <a className="cyb-contact-btn" href="/contact">Contact Us</a>
+                <Link to="/contact" className="cyb-contact-btn">
+                    Contact Us
+                </Link>
             </div>
         </section>
     );
