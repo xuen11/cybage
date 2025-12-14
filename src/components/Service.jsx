@@ -33,6 +33,15 @@ const ServicesSection = () => {
 
     return (
         <section ref={sectionRef} id="services-section">
+
+            <div className="wave-wrapper">
+                <svg className="wave-svg" viewBox="0 0 1440 320" preserveAspectRatio="none">
+                    <path className="wave wave1" d="M0,64L48,80C96,96,192,128,288,128C384,128,480,96,576,80C672,64,768,64,864,80C960,96,1056,128,1152,128C1248,128,1344,96,1392,80L1440,64L1440,320H0Z"></path>
+                    <path className="wave wave2" d="M0,150L48,140C96,130,192,110,288,105C384,100,480,110,576,120C672,130,768,140,864,135C960,130,1056,110,1152,100C1248,90,1344,90,1392,90L1440,90L1440,320H0Z"></path>
+                    <path className="wave wave3" d="M0,220L48,210C96,200,192,180,288,170C384,160,480,160,576,170C672,180,768,200,864,210C960,220,1056,220,1152,210C1248,200,1344,180,1392,170L1440,160L1440,320H0Z"></path>
+                </svg>
+            </div>
+
             <div className="cybage-services-section">
                 <div className="cybage-services-container">
                     <div className="cybage-services-content">

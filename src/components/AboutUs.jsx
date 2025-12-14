@@ -33,7 +33,6 @@ const AboutUs = () => {
 
     return (
         <div className="about-section" ref={aboutRef}>
-            {/* Removed animation class from gradient */}
             <div className="about-top-gradient"></div>
 
             <div className="about-container">
