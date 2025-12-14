@@ -2596,26 +2596,22 @@ h1.cyb-anim-quote-fade,
 
 
 /*Solution Page*/
-/* SolutionsSection.css */
-
 .solutions-section {
     padding: 0rem 0;
     background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
-    height:2000px;
-    z-index:-1;
+    min-height: 100vh;
+    z-index: -1;
 }
 
 .solution-banner {
     background-image: linear-gradient( rgba(0, 64, 32, 0.55), rgba(0, 64, 32, 0.55) ), url('/solution1.jpg');
-    background-size: cover; /* <-- fills the container */
-    background-position: center; /* <-- center the image */
+    background-size: cover; 
+    background-position: center; 
     background-repeat: no-repeat;
     height: 350px;
-    width: 100%; /* optional but recommended */
+    width: 100%; 
     
 }
-
-
 
 .solutions-container {
     max-width: 1400px;
