@@ -1,5 +1,7 @@
 ﻿import React, { useState } from 'react';
 import '/src/App.css';
+import { Link } from 'react-router-dom';
+
 
 const SolutionPage = () => {
     const [selectedSolution, setSelectedSolution] = useState(null);

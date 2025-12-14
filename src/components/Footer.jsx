@@ -68,12 +68,12 @@ export default function Footer() {
                             </li>
                             <li>
                                 <Link to="/services" onClick={() => handleCurrentPageClick("/services")}>
-                                    Our Services
+                                    Services & Product
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/project" onClick={() => handleCurrentPageClick("/project")}>
-                                    Projects
+                                <Link to="/solution" onClick={() => handleCurrentPageClick("/solution")}>
+                                    Solution
                                 </Link>
                             </li>
                             <li>
