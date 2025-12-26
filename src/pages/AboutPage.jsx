@@ -965,7 +965,7 @@ export default function AboutPage() {
                 <div className="glow-orb" style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }} />
                 <div className="hero-content">
                     <span className="tag-line" style={{ color: 'var(--brand-green)', opacity: 0.8 }}>Established 2017</span>
-                    <h1 className="hero-title">ABOUT<br /><span>CYBERAGE</span></h1>
+                    <h1 className="hero-title">ABOUT<br /><span>CYBAGE</span></h1>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1.25rem', maxWidth: '550px', marginTop: '30px' }}>
                         Transforming complex industrial ideas into intuitive digital realities through boutique hardware and software engineering.
                     </p>
