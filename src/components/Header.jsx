@@ -1,12 +1,17 @@
 ﻿import React, { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "/src/App.css";
 
-const Header = () => {
+const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const location = useLocation();
 
-    // Header shadow on scroll
+    // DELETE THIS LINE:
+    // const [isLoggedIn, setIsLoggedIn] = useState(false); 
+
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    // 1. Handle Scroll Effect
     useEffect(() => {
         const handleScroll = () => {
             const header = document.querySelector(".header");
@@ -16,15 +21,24 @@ const Header = () => {
                 header.classList.remove("scrolled");
             }
         };
-
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Scroll to top whenever location changes
+    // 2. Check Auth Status on Page Load/Navigation
     useEffect(() => {
+        const authStatus = localStorage.getItem("isLoggedIn");
+        setIsLoggedIn(authStatus === "true");
         window.scrollTo(0, 0);
     }, [location.pathname]);
+
+    // 3. Logout Logic
+    const handleLogout = () => {
+        localStorage.removeItem("isLoggedIn"); // Clear storage
+        setIsLoggedIn(false); // Update local state
+        setIsMobileMenuOpen(false); // Close menu if open
+        navigate("/login"); // Redirect to login page
+    };
 
     const navItems = [
         { name: "Home", path: "/" },
@@ -33,18 +47,9 @@ const Header = () => {
         { name: "About", path: "/about" },
     ];
 
-    // Simple handler to close mobile menu
-    const handleNavigate = () => {
-        setIsMobileMenuOpen(false);
-    };
-
-    // Force immediate scroll to top when clicking current page link
-    const handleCurrentPageClick = (path) => {
+    const handleNavItemClick = (path) => {
         if (location.pathname === path) {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            window.scrollTo({ top: 0, behavior: "smooth" });
         }
         setIsMobileMenuOpen(false);
     };
@@ -52,57 +57,62 @@ const Header = () => {
     return (
         <header className="header">
             <div className="header-container">
-
                 {/* Logo */}
                 <div className="logo-section">
-                    <Link
-                        to="/"
-                        onClick={() => {
-                            handleNavigate();
-                            if (location.pathname === "/") {
-                                window.scrollTo({
-                                    top: 0,
-                                    behavior: "smooth"
-                                });
-                            }
-                        }}
-                    >
+                    <Link to="/" onClick={() => handleNavItemClick("/")}>
                         <img src="/logo.jpg" alt="Logo" className="logo-icon" />
                     </Link>
                 </div>
 
-                {/* Navigation */}
+                {/* Navigation Menu */}
                 <nav>
                     <ul className={`nav-menu ${isMobileMenuOpen ? "active" : ""}`}>
                         {navItems.map((item) => (
                             <li key={item.name}>
                                 <Link
                                     to={item.path}
-                                    className={`nav-link ${location.pathname === item.path ? "active-link" : ""
-                                        }`}
-                                    onClick={() => handleCurrentPageClick(item.path)}
+                                    className={`nav-link ${location.pathname === item.path ? "active-link" : ""}`}
+                                    onClick={() => handleNavItemClick(item.path)}
                                 >
                                     {item.name}
                                 </Link>
                             </li>
                         ))}
+
+                        {/* Mobile-only Actions (Optional: helps UI on small screens) */}
+                        {/*<li className="mobile-only-actions">*/}
+                        {/*    {isLoggedIn ? (*/}
+                        {/*        <button className="logout-btn-mobile" onClick={handleLogout}>Logout</button>*/}
+                        {/*    ) : (*/}
+                        {/*        <Link to="/login" className="login-link-mobile" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>*/}
+                        {/*    )}*/}
+                        {/*</li>*/}
                     </ul>
                 </nav>
 
-                {/* Contact Button */}
-                <div className="contact-btn-container">
+                {/* Desktop Action Buttons */}
+                <div className="header-actions">
+                    {isLoggedIn ? (
+                        <button
+                            className="login-btn logout-mode"
+                            onClick={handleLogout}
+                        >
+                            Logout
+                        </button>
+                    ) : (
+                        <Link
+                            to="/login"
+                            className="login-btn"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                            Login
+                        </Link>
+                    )}
+
                     <Link
                         to="/contact"
                         className="contact-btn"
-                        onClick={() => {
-                            handleNavigate();
-                            if (location.pathname === "/contact") {
-                                window.scrollTo({
-                                    top: 0,
-                                    behavior: "smooth"
-                                });
-                            }
-                        }}
+                        onClick={() => setIsMobileMenuOpen(false)}
                     >
                         Contact
                     </Link>
@@ -112,6 +122,7 @@ const Header = () => {
                 <button
                     className={`menu-toggle ${isMobileMenuOpen ? "open" : ""}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="Toggle navigation"
                 >
                     <span></span>
                     <span></span>

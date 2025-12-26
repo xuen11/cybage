@@ -8,11 +8,11 @@ const ServicesSection = () => {
     const location = useLocation();
 
     const services = [
-        { number: "01", title: "Software Solutions", link: "/services?service=software-solutions" },
-        { number: "02", title: "Electronic Device Design / Product Engineering", link: "/services?service=electronic-design" },
-        { number: "03", title: "Industrial IT Peripheral", link: "/services?service=industrial-it" },
-        { number: "04", title: "IT Technology Consultation / Training", link: "/services?service=it-consultation" },
-        { number: "05", title: "Maintenance & Support", link: "/services?service=maintenance-support" },
+        { number: "01", title: "Software Solutions", link: "/softwareSolution" },
+        { number: "02", title: "Electronic Device Design / Product Engineering", link: "/electronic" },
+        { number: "03", title: "Industrial IT Peripheral", link: "/industrial-it" },
+        { number: "04", title: "IT Technology Consultation / Training", link: "/consult" },
+        { number: "05", title: "Maintenance & Support", link: "/maintenance" },
     ];
 
     useEffect(() => {

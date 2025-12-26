@@ -5,14 +5,12 @@ import "/src/App.css";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Marker Icon
 const markerIcon = new L.Icon({
     iconUrl: "https://cdn-icons-png.flaticon.com/512/684/684908.png",
     iconSize: [32, 32],
     className: "animated-marker",
 });
 
-// PanTo component
 const PanTo = ({ position }) => {
     const map = useMap();
     if (position) {
@@ -109,21 +107,10 @@ const SolutionSection = () => {
                                 </div>
                             ))}
                         </div>
-
-                        {/* Contact Section */}
-                        
                     </div>
                 </div>
             </div>
-            <div className="cyb-contact-section">
-                            <h4 className="cyb-contact-title">Interested in Our Solutions?</h4>
-                            <p className="cyb-contact-text">
-                                Contact us to learn how we can help your business grow globally.
-                            </p>
-                            <Link to="/contact" className="cyb-contact-btn">
-                                Contact Us
-                            </Link>
-                        </div>
+           
         </section>
     );
 };

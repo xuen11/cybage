@@ -53,9 +53,8 @@ const ContactPage = () => {
     return (
         <div
             className="contact-container"
-            ref={sectionRef} // Add ref here
+            ref={sectionRef} 
         >
-            {/* Banner Section */}
             <div className="contact-banner-wrapper">
                 <div className="contact-banner-overlay">
                     <h1
@@ -72,52 +71,6 @@ const ContactPage = () => {
                     </p>
                 </div>
             </div>
-
-            {/* Contact Cards */}
-            {/*<section className="contact-section">*/}
-            {/*    <div*/}
-            {/*        className={`contact-card ${isVisible ? 'cyb-anim-container-slide' : ''}`}*/}
-            {/*        style={isVisible ? { animationDelay: '0.5s' } : {}}*/}
-            {/*    >*/}
-            {/*        <Mail className="contact-icon" size={60} />*/}
-            {/*        <p className="contact-title">enquiry@cybagetech.com.my</p>*/}
-            {/*        <a href="mailto:chirpybirdmusic@gmail.com" className="contact-link">*/}
-            {/*            Drop us an email*/}
-            {/*        </a>*/}
-            {/*    </div>*/}
-
-            {/*    */}{/* WhatsApp Card */}
-            {/*    <div*/}
-            {/*        className={`contact-card ${isVisible ? 'cyb-anim-container-slide' : ''}`}*/}
-            {/*        style={isVisible ? { animationDelay: '0.6s' } : {}}*/}
-            {/*    >*/}
-            {/*        <PhoneCall className="contact-icon" size={60} />*/}
-            {/*        <p className="contact-title">+6016-7978042</p>*/}
-            {/*        <a href="https://wa.me/60126944190" className="contact-link">*/}
-            {/*            Drop us a message*/}
-            {/*        </a>*/}
-            {/*    </div>*/}
-
-            {/*    */}{/* Location Card */}
-            {/*    <div*/}
-            {/*        className={`contact-card ${isVisible ? 'cyb-anim-container-slide' : ''}`}*/}
-            {/*        style={isVisible ? { animationDelay: '0.7s' } : {}}*/}
-            {/*    >*/}
-            {/*        <MapPin className="contact-icon" size={60} />*/}
-            {/*        <p className="contact-title">*/}
-            {/*            21-1, Jalan SW21, Taman Sutera Wangi, <br />*/}
-            {/*            Batu Berendam 75350 Melaka, Malaysia*/}
-            {/*        </p>*/}
-            {/*        <a*/}
-            {/*            href="https://maps.app.goo.gl/Fq3m8m6u5h8vQDENA"*/}
-            {/*            target="_blank"*/}
-            {/*            rel="noopener noreferrer"*/}
-            {/*            className="contact-link"*/}
-            {/*        >*/}
-            {/*            Get direction*/}
-            {/*        </a>*/}
-            {/*    </div>*/}
-            {/*</section>*/}
 
             <div className="contact-page">
                 {/* Section 1: Get in Touch with Image */}
@@ -241,29 +194,6 @@ const ContactPage = () => {
                                 <p>Monday - Friday: 9:00 AM - 6:00 PM</p>
                                 <p>Saturday & Sunday: CLOSED</p>
                             </div>
-
-                            {/*<div className="social-links">*/}
-                            {/*    <a href="#" className="social-icon">*/}
-                            {/*        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">*/}
-                            {/*            <path d="M20 10C20 4.477 15.523 0 10 0S0 4.477 0 10c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V10h2.54V7.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V10h2.773l-.443 2.89h-2.33v6.988C16.343 19.128 20 14.991 20 10z" />*/}
-                            {/*        </svg>*/}
-                            {/*    </a>*/}
-                            {/*    <a href="#" className="social-icon">*/}
-                            {/*        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">*/}
-                            {/*            <path d="M19.59 3.29c-.72.32-1.5.54-2.32.64a4.08 4.08 0 001.78-2.25 8.16 8.16 0 01-2.58.99 4.07 4.07 0 00-6.93 3.71 11.55 11.55 0 01-8.4-4.26 4.07 4.07 0 001.26 5.43 4.05 4.05 0 01-1.84-.51v.05a4.07 4.07 0 003.26 3.99 4.09 4.09 0 01-1.83.07 4.07 4.07 0 003.8 2.83 8.16 8.16 0 01-5.05 1.74c-.33 0-.65-.02-.97-.06a11.53 11.53 0 006.25 1.83c7.5 0 11.6-6.21 11.6-11.6 0-.18 0-.35-.01-.53a8.28 8.28 0 002.03-2.11z" />*/}
-                            {/*        </svg>*/}
-                            {/*    </a>*/}
-                            {/*    <a href="#" className="social-icon">*/}
-                            {/*        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">*/}
-                            {/*            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />*/}
-                            {/*        </svg>*/}
-                            {/*    </a>*/}
-                            {/*    <a href="#" className="social-icon">*/}
-                            {/*        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">*/}
-                            {/*            <path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.008-.866-.013-1.7-2.782.603-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.336-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0110 4.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C17.137 18.163 20 14.418 20 10c0-5.523-4.477-10-10-10z" />*/}
-                            {/*        </svg>*/}
-                            {/*    </a>*/}
-                            {/*</div>*/}
                         </div>
                     </div>
                 </section>
@@ -272,7 +202,8 @@ const ContactPage = () => {
                 <section className="map-section">
                     <div className="map-container">
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.234!2d102.234!3d2.234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMsKwMTQnMDIuNCJOIDEwMsKwMTQnMDIuNCJF!5e0!3m2!1sen!2smy!4v1234567890!5m2!1sen!2smy"
+                            title="Cybage Technologies Location"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3986.790443424177!2d102.2599708!3d2.2323049!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31d1f0590825f38f%3A0xc3f8e58987b7a5a8!2sJalan%20SW%2021%2C%20Taman%20Sutera%20Wangi%2C%2075350%20Batu%20Berendam%2C%20Melaka!5e0!3m2!1sen!2smy!4v1700000000000!5m2!1sen!2smy"
                             width="100%"
                             height="450"
                             style={{ border: 0 }}
@@ -281,7 +212,7 @@ const ContactPage = () => {
                             referrerPolicy="no-referrer-when-downgrade"
                         ></iframe>
                         <a
-                            href="https://www.google.com/maps/search/?api=1&query=21-1+Jalan+SW21+Taman+Sutera+Wangi+Batu+Berendam+Melaka"
+                            href="https://maps.google.com/?q=Jalan+SW+21,+Taman+Sutera+Wangi,+75350+Batu+Berendam,+Melaka"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="map-link"
@@ -294,8 +225,6 @@ const ContactPage = () => {
                 </section>
             </div>
         </div>
-
-
     );
 };
 

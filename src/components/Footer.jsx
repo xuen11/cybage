@@ -5,7 +5,6 @@ import "/src/App.css";
 export default function Footer() {
     const location = useLocation();
 
-    // Force scroll to top if clicking current page
     const handleCurrentPageClick = (path) => {
         if (location.pathname === path) {
             window.scrollTo({
@@ -17,7 +16,6 @@ export default function Footer() {
 
     return (
         <footer className="footer-container">
-            <div className="footer-diagonal"></div>
 
             <div className="footer-content">
                 <div className="footer-inner">
@@ -89,27 +87,27 @@ export default function Footer() {
                         <h3 className="footer-title">Quick Links</h3>
                         <ul className="footer-links">
                             <li>
-                                <Link to="/services?service=software-solutions">
+                                <Link to="/softwareSolution">
                                     Smart Software Solutions
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/services?service=electronic-design">
+                                <Link to="/electronic">
                                     Electronic Device Design / Product Engineering
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/services?service=industrial-it">
+                                <Link to="/industrial-it">
                                     Industrial IT Peripheral
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/services?service=it-consultation">
+                                <Link to="/consult">
                                     IT Technology Consultation & Training
                                 </Link>
                             </li>
                             <li>
-                                <Link to="/services?service=maintenance-support">
+                                <Link to="/maintenance">
                                     Maintenance & Support
                                 </Link>
                             </li>
