@@ -105,13 +105,13 @@ const EPMSDetails = () => {
                         <div className="value-card"><Zap className="value-icon" /><h5>Improved profitability</h5></div>
                         <div className="value-card"><Users className="value-icon" /><h5>Improved employee morale / empowerment / teamwork</h5></div>
                     </div>
-                    <div className="concept-section">
-                        <h4 className="sub-header"><Lightbulb size={18} /> The Concept</h4>
-                        <p className="lead-text">EPMS achieves the above by using the concept below</p>
-                        <div className="clean-image-area">
-                            <img src="/path-to-concept-image.jpg" alt="EPMS Concept" className="content-img" />
-                        </div>
-                    </div>
+                    {/*<div className="concept-section">*/}
+                    {/*    <h4 className="sub-header"><Lightbulb size={18} /> The Concept</h4>*/}
+                    {/*    <p className="lead-text">EPMS achieves the above by using the concept below</p>*/}
+                    {/*    <div className="clean-image-area">*/}
+                    {/*        <img src="/path-to-concept-image.jpg" alt="EPMS Concept" className="content-img" />*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             )
         },
@@ -149,9 +149,9 @@ const EPMSDetails = () => {
                             </div>
                         ))}
                     </div>
-                    <div className="clean-image-area">
-                        <img src="/path-to-features-image.jpg" alt="EPMS Features" className="content-img" />
-                    </div>
+                    {/*<div className="clean-image-area">*/}
+                    {/*    <img src="/path-to-features-image.jpg" alt="EPMS Features" className="content-img" />*/}
+                    {/*</div>*/}
                 </div>
             )
         },
@@ -187,7 +187,7 @@ const EPMSDetails = () => {
                             <ul className="factor-list"><li>Non-standard quality</li><li>Required Reworks</li></ul>
                         </div>
                     </div>
-                    <div className="clean-image-area"><img src="/path-to-oee-image.jpg" alt="OEE Calculation Diagram" className="content-img" /></div>
+                {/*    <div className="clean-image-area"><img src="/path-to-oee-image.jpg" alt="OEE Calculation Diagram" className="content-img" /></div>*/}
                 </div>
             )
         },
@@ -202,7 +202,7 @@ const EPMSDetails = () => {
                         <p><strong>Chronic disturbance</strong> are usually small, hidden and complicated. Identification of chronic disturbances is only possible through comparison of performance with the theoretical capacity of the equipment.</p>
                         <p>Meanwhile <strong>sporadic disturbance</strong> are more obvious since they occur quickly and as large deviations from the normal state.</p>
                     </div>
-                    <div className="clean-image-area"><img src="/path-to-big-losses-image.jpg" alt="The Six Big Losses" className="content-img" /></div>
+                {/*    <div className="clean-image-area"><img src="/path-to-big-losses-image.jpg" alt="The Six Big Losses" className="content-img" /></div>*/}
                 </div>
             )
         },
@@ -220,7 +220,7 @@ const EPMSDetails = () => {
                             <li>Accuracy providing clear visibility for productivity.</li>
                         </ul>
                     </div>
-                    <div className="clean-image-area"><img src="/path-to-calculator-image.jpg" alt="OEE Savings Calculator Interface" className="content-img" /></div>
+                {/*    <div className="clean-image-area"><img src="/path-to-calculator-image.jpg" alt="OEE Savings Calculator Interface" className="content-img" /></div>*/}
                 </div>
             )
         },
@@ -233,7 +233,7 @@ const EPMSDetails = () => {
             <style>{`
                 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
                 .epms-clean-page { font-family: 'Plus Jakarta Sans', sans-serif; background: #f9fafb; color: #334155; padding-bottom: 80px; }
-                .hero-banner { background: white; padding: 80px 20px; text-align: center; border-bottom: 1px solid #e5e7eb; }
+                .hero-banner { background: white; margin-top:90px;padding: 90px 20px; text-align: center; border-bottom: 1px solid #e5e7eb; }
                 .hero-banner h1 { font-size: 2.5rem; font-weight: 800; color: #111827; margin: 0; }
                 .details-container { max-width: 1240px; margin: 40px auto; padding: 0 24px; }
                 .nav-btn { display: inline-flex; align-items: center; gap: 8px; color: #10b981; text-decoration: none; font-weight: 700; margin-bottom: 24px; font-size: 0.9rem; }

@@ -806,23 +806,20 @@
 //}
 
 
-
-import React, { useState, useRef } from 'react';
-import { ShieldCheck, Cpu, Globe, Settings, Wrench, BarChart3, Microscope, Zap, ArrowUpRight, Target, Activity, Award, Users, Lightbulb } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ShieldCheck, Cpu, Globe, Settings, Wrench, BarChart3, Microscope, Zap, ArrowUpRight, Target, Activity, Award, Users, Lightbulb, ChevronRight } from 'lucide-react';
 
 export default function AboutPage() {
-    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-    const bannerRef = useRef(null);
-
-    const handleMouseMove = (e) => {
-        if (bannerRef.current) {
-            const rect = bannerRef.current.getBoundingClientRect();
-            setMousePos({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('is-visible');
             });
-        }
-    };
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-reveal').forEach(el => observer.observe(el));
+        return () => observer.disconnect();
+    }, []);
 
     const coreSpecializations = [
         { title: 'IoT Systems', icon: <Globe />, desc: 'Smart connectivity & real-time data acquisition.' },
@@ -833,218 +830,216 @@ export default function AboutPage() {
         { title: 'ICT Peripherals', icon: <BarChart3 />, desc: 'Industrial printers, scanners, and PC supply.' },
     ];
 
-    const whyChooseUs = [
-        {
-            title: 'Unmatched Integrity',
-            icon: <ShieldCheck size={32} />,
-            desc: 'We believe in absolute transparency. No hidden costs, no over-promising—just reliable engineering.'
-        },
-        {
-            title: 'Bespoke Innovation',
-            icon: <Lightbulb size={32} />,
-            desc: 'We don’t believe in one-size-fits-all. Every solution is custom-tailored to your specific industrial workflow.'
-        },
-        {
-            title: 'End-to-End Support',
-            icon: <Users size={32} />,
-            desc: 'From initial PCB design to long-term hardware maintenance, we are your long-term technology partner.'
-        }
-    ];
+    const values = ['Creative Ideas', 'Team Work', 'Continuous Improvement', 'Discipline', 'Satisfaction', 'Trustworthy'];
 
     return (
-        <div className="cyber-root">
+        <div className="promptly-style-root">
+            {/* Background decorative elements */}
+            <div className="bg-dots"></div>
+            <div className="bg-line-1"></div>
+            <div className="bg-line-2"></div>
+            <div className="bg-line-3"></div>
+            <div className="corner-circuit top-left"></div>
+            <div className="corner-circuit bottom-right"></div>
+
             <style>{`
-                @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
+                @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap');
 
                 :root {
-                    --brand-green: #189D4A;
-                    --brand-red: #EA1D24;
-                    --bg-light: #ffffff;
-                    --bg-soft: #f8fafc;
-                    --text-main: #1e293b;
-                    --text-muted: #64748b;
+                    --bg-deep: #000000;
+                    --accent-green: #10B981;
+                    --accent-emerald: #059669;
+                    --accent-lime: #84CC16;
+                    --glass: rgba(255, 255, 255, 0.05);
+                    --glass-border: rgba(255, 255, 255, 0.1);
                 }
 
-                .cyber-root { 
-                    background: var(--bg-light); 
-                    color: var(--text-main); 
+                .promptly-style-root {
+                    background: #000000;
+                    color: white;
                     font-family: 'Plus Jakarta Sans', sans-serif;
+                    min-height: 100vh;
                     overflow-x: hidden;
-                }
-
-                /* 1. HERO */
-                .hero-visual {
-                    position: relative; height: 80vh; width: 100%;
-                    background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 100%); 
-                    display: flex; align-items: center; padding: 0 8%;
-                    overflow: hidden; border-bottom: 1px solid #e2e8f0;
-                }
-                .glow-orb {
-                    position: absolute; width: 800px; height: 800px;
-                    background: radial-gradient(circle, rgba(24, 157, 74, 0.08) 0%, transparent 70%);
-                    border-radius: 50%; pointer-events: none; z-index: 1;
-                    transform: translate(-50%, -50%); transition: transform 0.2s cubic-bezier(0.1, 1, 0.1, 1);
-                }
-                .hero-content { position: relative; z-index: 2; width: 100%; }
-                .hero-title { 
-                    font-family: 'Space Grotesk', sans-serif; font-size: clamp(3rem, 8vw, 6.5rem); 
-                    color: var(--text-main); font-weight: 700; line-height: 0.95; letter-spacing: -3px;
-                }
-                .hero-title span { color: var(--brand-green); }
-
-                /* 2. IDENTITY SECTION */
-                .identity-section { 
-                    display: grid; grid-template-columns: 1fr 1fr; min-height: 70vh;
-                    width: 100%; background: #fff;
-                }
-                .identity-visual {
-                    background: url('about.jpg') center/cover;
                     position: relative;
-                    height:450px;
-                    width:450px;
-                    align-items:center;
-                    margin-left:190px;
-                }
-                .identity-text { padding: 10% 10%; display: flex; flex-direction: column; justify-content: center; }
-                .tag-line { color: var(--brand-red); font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; margin-bottom: 20px; }
-
-                /* 3. CORE SPECIALIZATION */
-                .grid-section { padding: 100px 8%; background: var(--bg-soft); }
-                .tile-container { 
-                    display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-                    gap: 1px; background: #e2e8f0; border: 1px solid #e2e8f0;
-                }
-                .tile-card {
-                    background: #fff; padding: 50px 40px; transition: 0.4s;
-                    display: flex; flex-direction: column; gap: 20px;
-                }
-                .tile-card:hover { background: #f1f5f9; }
-                .tile-card:hover .icon-box { color: var(--brand-green); transform: translateY(-5px); }
-                .icon-box { color: var(--text-main); transition: 0.4s; }
-
-                /* 4. WHY CHOOSE US - NEW SECTION */
-                .why-section { padding: 100px 8%; background: #fff; }
-                .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 60px; }
-                .why-item { text-align: left; }
-                .why-icon { color: var(--brand-green); margin-bottom: 20px; }
-
-                /* 5. MISSION/VISION */
-                .split-box { display: flex; width: 100%; height: 500px; color: white; }
-                .box-half { flex: 1; padding: 60px 8%; display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden; }
-                .box-half.mission { background: var(--brand-green); }
-                .box-half.vision { background: #1e293b; }
-                .box-icon { position: absolute; top: -20px; right: -20px; font-size: 180px; opacity: 0.1; color: #fff; }
-
-                /* 6. VALUES SCROLL */
-                .values-banner { 
-                    padding: 80px 0; background: #f1f5f9; overflow: hidden; white-space: nowrap;
-                    border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0;
-                }
-                .value-track { display: inline-block; animation: scroll 35s linear infinite; }
-                .value-item { 
-                    display: inline-block; color: transparent; -webkit-text-stroke: 1px #cbd5e1;
-                    font-size: 4.5rem; font-weight: 800; margin-right: 50px; text-transform: uppercase;
-                }
-                .value-item:hover { color: var(--brand-green); -webkit-text-stroke: 1px var(--brand-green); }
-
-                @keyframes scroll { 
-                    0% { transform: translateX(0); }
-                    100% { transform: translateX(-50%); }
                 }
 
-                @media (max-width: 1024px) {
-                    .identity-section, .split-box { flex-direction: column; grid-template-columns: 1fr; }
-                    .identity-visual { height: 300px; }
-                    .split-box { height: auto; }
-                    .box-half { height: 350px; }
+                /* BRIGHTER Green Background Glows */
+                .promptly-style-root::before {
+                    content: '';
+                    position: fixed;
+                    top: 0; left: 0; width: 100%; height: 100%;
+                    background-image: 
+                        radial-gradient(ellipse 50% 60% at 0% 20%, rgba(16, 185, 129, 0.25), transparent),
+                        radial-gradient(ellipse 50% 60% at 100% 80%, rgba(16, 185, 129, 0.2), transparent),
+                        radial-gradient(ellipse 40% 50% at 0% 100%, rgba(5, 150, 105, 0.15), transparent),
+                        radial-gradient(ellipse 40% 50% at 100% 0%, rgba(132, 204, 22, 0.12), transparent);
+                    pointer-events: none;
+                    z-index: 0;
+                }
+
+                /* Visible Grid */
+                .promptly-style-root::after {
+                    content: '';
+                    position: fixed;
+                    top: 0; left: 0; width: 100%; height: 100%;
+                    background-image: 
+                        linear-gradient(rgba(16, 185, 129, 0.06) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(16, 185, 129, 0.06) 1px, transparent 1px);
+                    background-size: 50px 50px;
+                    pointer-events: none;
+                    z-index: 0;
+                    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 0%, transparent 85%);
+                }
+
+                @keyframes line-move-1 { 0%, 100% { transform: translateX(-100%) translateY(0); } 50% { transform: translateX(100vw) translateY(-50px); } }
+                @keyframes line-move-2 { 0%, 100% { transform: translateX(100vw) translateY(0); } 50% { transform: translateX(-100%) translateY(50px); } }
+                @keyframes line-move-3 { 0%, 100% { transform: translateY(-100%) translateX(0); } 50% { transform: translateY(100vh) translateX(30px); } }
+
+                /* BRIGHTER Animated Lines */
+                .bg-line-1 { position: fixed; top: 20%; left: 0; width: 250px; height: 2px; background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.6), transparent); z-index: 0; animation: line-move-1 20s ease-in-out infinite; }
+                .bg-line-2 { position: fixed; top: 60%; right: 0; width: 200px; height: 1px; background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.5), transparent); z-index: 0; animation: line-move-2 25s ease-in-out infinite; }
+                .bg-line-3 { position: fixed; left: 15%; top: 0; width: 2px; height: 220px; background: linear-gradient(180deg, transparent, rgba(132, 204, 22, 0.5), transparent); z-index: 0; animation: line-move-3 18s ease-in-out infinite; }
+                
+                .bg-dots { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle, rgba(16, 185, 129, 0.12) 1px, transparent 1px); background-size: 80px 80px; z-index: 0; opacity: 0.4; pointer-events: none; }
+
+                .corner-circuit { position: fixed; z-index: 0; pointer-events: none; }
+                .corner-circuit.top-left { top: 0; left: 0; width: 300px; height: 300px; background: linear-gradient(90deg, rgba(16, 185, 129, 0.2) 1px, transparent 1px) 0 0, linear-gradient(rgba(16, 185, 129, 0.2) 1px, transparent 1px) 0 0; background-size: 30px 30px; mask-image: linear-gradient(135deg, black 0%, transparent 75%); }
+                .corner-circuit.bottom-right { bottom: 0; right: 0; width: 400px; height: 400px; background: linear-gradient(90deg, rgba(16, 185, 129, 0.18) 1px, transparent 1px) 0 0, linear-gradient(rgba(16, 185, 129, 0.18) 1px, transparent 1px) 0 0; background-size: 40px 40px; mask-image: linear-gradient(-45deg, black 0%, transparent 75%); }
+
+                .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+                .animate-reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
+                .animate-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+                .hero { padding: 120px 0 60px; text-align: center; }
+                .hero h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 800; line-height: 1.1; margin-bottom: 24px; }
+                .hero p { color: #A1B0A8; font-size: 1.25rem; max-width: 700px; margin: 0 auto; }
+
+                .banner-section { display: grid; grid-template-columns: 1.2fr 1fr; gap: 60px; padding: 80px 0; align-items: center; }
+                .banner-left { text-align: left; }
+                .banner-left h2 { font-size: 3rem; font-weight: 800; margin: 20px 0; line-height: 1.1; }
+                .banner-left p { color: #A1B0A8; line-height: 1.8; font-size: 1.1rem; margin-bottom: 30px; }
+
+                .process-stack { display: flex; flex-direction: column; gap: 15px; }
+                .process-item { display: flex; align-items: center; gap: 20px; padding: 25px; border-radius: 20px; background: var(--glass); border: 1px solid var(--glass-border); transition: 0.3s; }
+                .process-item:hover { transform: translateX(10px); border-color: var(--accent-green); box-shadow: 0 0 20px rgba(16, 185, 129, 0.1); }
+                .process-item h4 { font-weight: 800; font-size: 1.25rem; margin-bottom: 4px; }
+                .process-item p { font-size: 0.9rem; opacity: 0.7; margin: 0; }
+
+                .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 60px; }
+                .exp-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass-border); padding: 32px; border-radius: 24px; transition: 0.3s; }
+                .exp-card:hover { background: rgba(16, 185, 129, 0.1); transform: translateY(-5px); border-color: rgba(16, 185, 129, 0.4); }
+                .exp-icon { background: var(--accent-green); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 20px; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+                
+                .values-wave-container { position: relative; padding: 100px 0; display: flex; justify-content: space-around; align-items: center; }
+                .wave-svg { position: absolute; top: 50%; left: 5%; right: 5%; height: 200px; transform: translateY(-50%); z-index: 1; }
+                .step-item { position: relative; z-index: 2; text-align: center; flex: 1; max-width: 180px; }
+                .step-circle { 
+                    width: 50px; height: 50px; background: var(--accent-green); 
+                    border-radius: 50%; margin: 0 auto 20px; 
+                    box-shadow: 0 0 30px var(--accent-green); 
+                    display: flex; align-items: center; justify-content: center; 
+                    transition: 0.3s; font-weight: 800; color: white; font-size: 1.2rem;
+                }
+                .step-num-bg { font-size: 6rem; font-weight: 800; opacity: 0.1; position: absolute; top: -50px; left: 50%; transform: translateX(-50%); }
+
+                @media (max-width: 900px) {
+                    .banner-section, .exp-grid { grid-template-columns: 1fr; }
+                    .values-wave-container { flex-direction: column; gap: 60px; }
+                    .wave-svg { display: none; }
                 }
             `}</style>
 
-            {/* 1. HERO */}
-            <section className="hero-visual" ref={bannerRef} onMouseMove={handleMouseMove}>
-                <div className="glow-orb" style={{ left: `${mousePos.x}px`, top: `${mousePos.y}px` }} />
-                <div className="hero-content">
-                    <span className="tag-line" style={{ color: 'var(--brand-green)', opacity: 0.8 }}>Established 2017</span>
-                    <h1 className="hero-title">ABOUT<br /><span>CYBAGE</span></h1>
-                    <p style={{ color: 'var(--text-muted)', fontSize: '1.25rem', maxWidth: '550px', marginTop: '30px' }}>
-                        Transforming complex industrial ideas into intuitive digital realities through boutique hardware and software engineering.
-                    </p>
-                </div>
-            </section>
+            <div className="container">
+                <section className="hero animate-reveal">
+                    <h1>About <span style={{ color: 'var(--accent-green)' }}>US</span></h1>
+                    <p>Cybage transforms complex industrial ideas into intuitive digital realities through specialized hardware and software engineering.</p>
+                </section>
 
-            {/* 2. THE STORY */}
-            <section className="identity-section">
-                <div className="identity-visual" />
-                <div className="identity-text">
-                    <span className="tag-line">The Identity</span>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 800, lineHeight: 1.1, marginBottom: '30px' }}>More Than<br />A Name.</h2>
-                    <p style={{ fontSize: '1.15rem', color: '#4b5563', lineHeight: 1.8 }}>
-                        Derived from <strong>"Cyberage"</strong>, Cybage symbolizes a forward-looking identity rooted in digital transformation.
-                        We focus on providing bespoke technology solutions that make industrial growth cost-effective, scalable, and future-proof.
-                    </p>
-                </div>
-            </section>
-
-            {/* 3. WHY CHOOSE US */}
-            <section className="why-section">
-                <span className="tag-line">Value Proposition</span>
-                <h2 style={{ fontSize: '3rem', fontWeight: 800 }}>Why Choose Cybage?</h2>
-                <div className="why-grid">
-                    {whyChooseUs.map((item, i) => (
-                        <div className="why-item" key={i}>
-                            <div className="why-icon">{item.icon}</div>
-                            <h3 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '15px' }}>{item.title}</h3>
-                            <p style={{ color: 'var(--text-muted)', lineHeight: 1.6 }}>{item.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </section>
-
-            {/* 4. SPECIALIZATIONS */}
-            <section className="grid-section">
-                <div style={{ marginBottom: '60px' }}>
-                    <span className="tag-line">What We Do</span>
-                    <h2 style={{ fontSize: '3rem', fontWeight: 800 }}>Core Expertise</h2>
-                </div>
-                <div className="tile-container">
-                    {coreSpecializations.map((spec, i) => (
-                        <div className="tile-card" key={i}>
-                            <div className="icon-box">{React.cloneElement(spec.icon, { size: 40 })}</div>
+                <section className="banner-section animate-reveal">
+                    <div className="banner-left">
+                        <span style={{ color: 'var(--accent-green)', letterSpacing: '2px', fontWeight: 800, fontSize: '0.8rem' }}>WHO WE ARE</span>
+                        <h2>More Than A <br /><span style={{ color: 'var(--accent-green)' }}>Name</span></h2>
+                        <p>
+                            Derived from <strong>"Cyberage"</strong>, Cybage symbolizes a forward-looking identity rooted in digital transformation.
+                            We focus on cost-effective, scalable, and future-proof growth.
+                        </p>
+                        <div style={{ display: 'flex', gap: '30px', paddingTop: '20px', borderTop: '1px solid var(--glass-border)' }}>
                             <div>
-                                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '10px' }}>{spec.title}</h3>
-                                <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>{spec.desc}</p>
+                                <span style={{ display: 'block', fontSize: '1.4rem', fontWeight: 800 }}>100%</span>
+                                <span style={{ fontSize: '0.7rem', color: 'var(--accent-green)', fontWeight: 800 }}>SCALABLE</span>
                             </div>
-                            <ArrowUpRight size={20} style={{ marginTop: 'auto', alignSelf: 'flex-end', opacity: 0.3 }} />
+                            <div>
+                                <span style={{ display: 'block', fontSize: '1.4rem', fontWeight: 800 }}>Digital</span>
+                                <span style={{ fontSize: '0.7rem', color: 'var(--accent-green)', fontWeight: 800 }}>DRIVEN</span>
+                            </div>
                         </div>
-                    ))}
-                </div>
-            </section>
+                    </div>
 
-            {/* 5. MISSION & VISION */}
-            <section className="split-box">
-                <div className="box-half mission">
-                    <Zap className="box-icon" />
-                    <h4 style={{ textTransform: 'uppercase', letterSpacing: 4, fontSize: '0.9rem', marginBottom: '10px' }}>Mission</h4>
-                    <h3 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.1 }}>To keep ahead with technology knowledge to deliver cost-effective reality.</h3>
-                </div>
-                <div className="box-half vision">
-                    <Activity className="box-icon" />
-                    <h4 style={{ textTransform: 'uppercase', letterSpacing: 4, fontSize: '0.9rem', marginBottom: '10px' }}>Vision</h4>
-                    <h3 style={{ fontSize: '2rem', fontWeight: 800, lineHeight: 1.1 }}>To lead the industry through reliability, honesty, and transparency.</h3>
-                </div>
-            </section>
+                    <div className="process-stack">
+                        <div className="process-item">
+                            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-green)', opacity: 0.6 }}>01</span>
+                            <div>
+                                <h4>Design</h4>
+                                <p>Innovative architectural planning for low-current systems.</p>
+                            </div>
+                        </div>
+                        <div className="process-item">
+                            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-green)', opacity: 0.6 }}>02</span>
+                            <div>
+                                <h4>Supply</h4>
+                                <p>High-quality system components for industrial scalability.</p>
+                            </div>
+                        </div>
+                        <div className="process-item">
+                            <span style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--accent-green)', opacity: 0.6 }}>03</span>
+                            <div>
+                                <h4>Maintenance</h4>
+                                <p>Professional installers ensuring long-term system health.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
-            {/* 6. VALUES SCROLL */}
-            <section className="values-banner">
-                <div className="value-track">
-                    {['Creative Ideas', 'Team Work', 'Continuous Improvement', 'Discipline', 'Satisfaction', 'Trustworthy'].map((v, i) => (
-                        <span key={i} className="value-item">{v}</span>
-                    ))}
-                    {['Creative Ideas', 'Team Work', 'Continuous Improvement', 'Discipline', 'Satisfaction', 'Trustworthy'].map((v, i) => (
-                        <span key={`dup-${i}`} className="value-item">{v}</span>
-                    ))}
-                </div>
-            </section>
+                <section className="animate-reveal" style={{ padding: '80px 0' }}>
+                    <h2 style={{ textAlign: 'center', fontSize: '2.5rem', fontWeight: 800 }}>Core Expertise</h2>
+                    <div className="exp-grid">
+                        {coreSpecializations.map((spec, i) => (
+                            <div className="exp-card" key={i}>
+                                <div className="exp-icon">{spec.icon}</div>
+                                <h4 style={{ fontSize: '1.25rem', fontWeight: 700, marginBottom: '12px' }}>{spec.title}</h4>
+                                <p style={{ color: '#A1B0A8', fontSize: '0.95rem', lineHeight: 1.6 }}>{spec.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="animate-reveal" style={{ padding: '100px 0' }}>
+                    <h2 style={{ textAlign: 'center', fontSize: '2.5rem', fontWeight: 800, marginBottom: '60px' }}>Our Core Values</h2>
+                    <div className="values-wave-container">
+                        <svg className="wave-svg" viewBox="0 0 1000 200" preserveAspectRatio="none">
+                            <path d="M 0 100 Q 83.33 20, 166.67 100 T 333.33 100 Q 416.67 20, 500 100 T 666.67 100 Q 750 20, 833.33 100 T 1000 100" stroke="rgba(16, 185, 129, 0.4)" strokeWidth="2" fill="none" />
+                        </svg>
+                        {values.map((v, i) => (
+                            <div className="step-item" key={i} style={{ transform: i % 2 === 0 ? 'translateY(-40px)' : 'translateY(40px)' }}>
+                                <div className="step-num-bg">{i + 1}</div>
+                                <div className="step-circle">{i + 1}</div>
+                                <h4 style={{ fontWeight: 700, fontSize: '1rem' }}>{v}</h4>
+                            </div>
+                        ))}
+                    </div>
+                </section>
+
+                <section className="animate-reveal" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', paddingBottom: '120px' }}>
+                    <div style={{ padding: '40px', borderRadius: '32px', background: 'linear-gradient(135deg, rgba(16, 185, 129, 0.15), transparent)', border: '1px solid var(--glass-border)' }}>
+                        <span style={{ color: 'var(--accent-green)', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '2px' }}>MISSION</span>
+                        <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginTop: '15px', lineHeight: 1.3 }}>To keep ahead with technology knowledge to deliver cost-effective reality.</h3>
+                    </div>
+                    <div style={{ padding: '40px', borderRadius: '32px', background: 'linear-gradient(135deg, rgba(5, 150, 105, 0.15), transparent)', border: '1px solid var(--glass-border)' }}>
+                        <span style={{ color: 'var(--accent-emerald)', fontWeight: 800, fontSize: '0.8rem', letterSpacing: '2px' }}>VISION</span>
+                        <h3 style={{ fontSize: '1.8rem', fontWeight: 800, marginTop: '15px', lineHeight: 1.3 }}>To lead the industry through reliability, honesty, and transparency.</h3>
+                    </div>
+                </section>
+            </div>
         </div>
     );
 }

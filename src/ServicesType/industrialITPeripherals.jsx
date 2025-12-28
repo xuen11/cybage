@@ -26,17 +26,17 @@ const IndustrialIT = () => {
                 }
             ]
         },
-        {
-            id: 2,
-            name: "Network & Connectivity",
-            image: "/huns.jpg",
-            category: "Infrastructure",
-            subItems: [
-                { name: "Huns & Switch", image: "/huns.jpg" },
-                { name: "KUM Switch Products", image: "/kum.jpg" },
-                { name: "Routers", image: "/router.jpg" }
-            ]
-        },
+        //{
+        //    id: 2,
+        //    name: "Network & Connectivity",
+        //    image: "/huns.jpg",
+        //    category: "Infrastructure",
+        //    subItems: [
+        //        { name: "Huns & Switch", image: "/huns.jpg" },
+        //        { name: "KUM Switch Products", image: "/kum.jpg" },
+        //        { name: "Routers", image: "/router.jpg" }
+        //    ]
+        //},
         {
             id: 3,
             name: "Barcode Printing",
@@ -61,12 +61,11 @@ const IndustrialIT = () => {
         },
         {
             id: 5,
-            name: "Software & OS",
+            name: "Software",
             image: "/computer-software.jpg",
             category: "Systems",
             subItems: [
-                { name: "Operating Systems", image: "/computer-software.jpg" },
-                { name: "Security & Antivirus", image: "/computer-software.jpg" }
+                { name: "Software (WIN 7, WIN 10, Adobe Antivirus)", image: "/computer-software.jpg" },
             ]
         },
         {

@@ -1,17 +1,11 @@
 ﻿import React, { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import "/src/App.css";
 
 const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    // DELETE THIS LINE:
-    // const [isLoggedIn, setIsLoggedIn] = useState(false); 
-
     const location = useLocation();
     const navigate = useNavigate();
 
-    // 1. Handle Scroll Effect
     useEffect(() => {
         const handleScroll = () => {
             const header = document.querySelector(".header");
@@ -25,25 +19,24 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // 2. Check Auth Status on Page Load/Navigation
     useEffect(() => {
         const authStatus = localStorage.getItem("isLoggedIn");
         setIsLoggedIn(authStatus === "true");
         window.scrollTo(0, 0);
-    }, [location.pathname]);
+    }, [location.pathname, setIsLoggedIn]);
 
-    // 3. Logout Logic
     const handleLogout = () => {
-        localStorage.removeItem("isLoggedIn"); // Clear storage
-        setIsLoggedIn(false); // Update local state
-        setIsMobileMenuOpen(false); // Close menu if open
-        navigate("/login"); // Redirect to login page
+        localStorage.removeItem("isLoggedIn");
+        setIsLoggedIn(false);
+        setIsMobileMenuOpen(false);
+        navigate("/login");
     };
 
     const navItems = [
         { name: "Home", path: "/" },
         { name: "Services & Product", path: "/services" },
         { name: "Solution", path: "/solution" },
+        { name: "Grant", path: "/grant" },
         { name: "About", path: "/about" },
     ];
 
@@ -57,72 +50,65 @@ const Header = ({ isLoggedIn, setIsLoggedIn }) => {
     return (
         <header className="header">
             <div className="header-container">
-                {/* Logo */}
                 <div className="logo-section">
                     <Link to="/" onClick={() => handleNavItemClick("/")}>
                         <img src="/logo.jpg" alt="Logo" className="logo-icon" />
                     </Link>
                 </div>
 
-                {/* Navigation Menu */}
-                <nav>
-                    <ul className={`nav-menu ${isMobileMenuOpen ? "active" : ""}`}>
-                        {navItems.map((item) => (
-                            <li key={item.name}>
-                                <Link
-                                    to={item.path}
-                                    className={`nav-link ${location.pathname === item.path ? "active-link" : ""}`}
-                                    onClick={() => handleNavItemClick(item.path)}
-                                >
-                                    {item.name}
-                                </Link>
-                            </li>
-                        ))}
+                {/* The wrapper gets the 'active' class */}
+                <nav className={`nav-wrapper ${isMobileMenuOpen ? "active" : ""}`}>
+                    <div className="nav-content">
+                        <ul className="nav-menu">
+                            {navItems.map((item, index) => (
+                                <li key={item.name} style={{ transitionDelay: `${index * 0.05}s` }}>
+                                    <Link
+                                        to={item.path}
+                                        className={location.pathname === item.path ? "active-link" : ""}
+                                        onClick={() => handleNavItemClick(item.path)}
+                                    >
+                                        {item.name}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
 
-                        {/* Mobile-only Actions (Optional: helps UI on small screens) */}
-                        {/*<li className="mobile-only-actions">*/}
-                        {/*    {isLoggedIn ? (*/}
-                        {/*        <button className="logout-btn-mobile" onClick={handleLogout}>Logout</button>*/}
-                        {/*    ) : (*/}
-                        {/*        <Link to="/login" className="login-link-mobile" onClick={() => setIsMobileMenuOpen(false)}>Login</Link>*/}
-                        {/*    )}*/}
-                        {/*</li>*/}
-                    </ul>
+                        {/* Mobile-only action buttons */}
+                        <div className="mobile-only-action">
+                            {isLoggedIn ? (
+                                <button className="login-btn" onClick={handleLogout}>
+                                    Logout
+                                </button>
+                            ) : (
+                                <Link to="/login" className="login-btn" onClick={() => setIsMobileMenuOpen(false)}>
+                                    Login
+                                </Link>
+                            )}
+                            <Link
+                                to="/contact"
+                                className="contact-btn"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                            >
+                                Contact
+                            </Link>
+                        </div>
+                    </div>
                 </nav>
 
-                {/* Desktop Action Buttons */}
+
                 <div className="header-actions">
                     {isLoggedIn ? (
-                        <button
-                            className="login-btn logout-mode"
-                            onClick={handleLogout}
-                        >
-                            Logout
-                        </button>
+                        <button className="login-btn" onClick={handleLogout}>Logout</button>
                     ) : (
-                        <Link
-                            to="/login"
-                            className="login-btn"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                        >
-                            Login
-                        </Link>
+                        <Link to="/login" className="login-btn">Login</Link>
                     )}
-
-                    <Link
-                        to="/contact"
-                        className="contact-btn"
-                        onClick={() => setIsMobileMenuOpen(false)}
-                    >
-                        Contact
-                    </Link>
+                    <Link to="/contact" className="contact-btn">Contact</Link>
                 </div>
 
-                {/* Mobile Menu Toggle */}
                 <button
                     className={`menu-toggle ${isMobileMenuOpen ? "open" : ""}`}
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    aria-label="Toggle navigation"
+                    aria-label="Toggle Navigation"
                 >
                     <span></span>
                     <span></span>

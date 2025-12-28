@@ -70,20 +70,13 @@ const LoginPage = ({ setIsLoggedIn }) => {
                         />
                     </div>
 
-                    <div className="form-options">
-                        <label className="remember-me">
-                            <input type="checkbox" /> Remember me
-                        </label>
-                        <Link to="/forgot-password">Forgot password?</Link>
-                    </div>
+                    
 
                     <button type="submit" className="login-submit-btn">
                         Sign In
                     </button>
 
-                    <p className="signup-prompt">
-                        Don't have an account? <Link to="/contact">Contact Admin</Link>
-                    </p>
+                   
                 </form>
             </div>
         </div>

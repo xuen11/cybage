@@ -16,6 +16,7 @@ import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import SolutionPage from "./pages/SolutionPage";
 import LoginPage from "./pages/LoginPage";
+import GrantPage from "./pages/GrantPage";
 
 // services
 import SmartSolutions from './ServicesType/softwareSolution';
@@ -53,7 +54,7 @@ function App() {
 
                 {/* 3. Pass the state to SolutionPage to trigger Admin View */}
                 <Route path="/solution" element={<SolutionPage isLoggedIn={isLoggedIn} />} />
-
+                <Route path="/grant" element={<GrantPage />} />
                 <Route path="/contact" element={<ContactPage />} />
 
                 <Route path="/softwareSolution" element={<SmartSolutions />} />

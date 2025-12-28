@@ -18,34 +18,7 @@ body {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-/*Header*/
-.header {
-    position: fixed;
-    top: 10px;
-    left: 35px;
-    right: 0;
-    z-index: 1000;
-    background: white;
-    opacity: 0.8;
-    backdrop-filter: blur(10px);
-    padding: 1.5rem 3rem;
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
-    width: 97%;
-    font-family: 'Poppins', sans-serif;
-}
-
+/* --- Desktop Base --- */
 .header {
     position: fixed;
     top: 25px;
@@ -53,113 +26,105 @@ body {
     transform: translateX(-50%);
     width: 85%;
     height: 90px;
-    opacity: 0.9;
+    background: white;
+    opacity: 0.95;
+    backdrop-filter: blur(10px);
     border-radius: 80px;
     transition: all 0.3s ease;
+    z-index: 1000;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Poppins', sans-serif;
+    display: flex;
     align-items: center;
-    
 }
 
     .header.scrolled {
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
         width: 100%;
-        opacity: 1;
+        height: 80px;
         border-radius: 0;
-        height: 100px;
+        opacity: 1;
     }
 
 .header-container {
     display: flex;
     align-items: center;
-    top:-8px;
+    width: 100%;
+    padding: 0 40px;
     position: relative;
-    align-content:center;
-
-}
-
-.logo-section {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
 }
 
 .logo-icon {
-    width: 180px;
-    height: 68px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top:0px;
+    width: 160px;
+    height: auto;
 }
 
-    .logo-icon svg {
-        width: 28px;
-        height: 28px;
-        color: white;
-
-    }
-
-.logo-text {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: #1f2937;
-    font-family: 'Poppins', sans-serif;
-}
-
+/* --- Desktop Nav Menu --- */
 .nav-menu {
     display: flex;
     align-items: center;
-    gap: 2.5rem;
+    gap: 2rem;
     list-style: none;
-    background: none;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
 }
 
-    .nav-menu li {
-        position: relative;
+/* On Desktop, center the nav-menu */
+@media (min-width: 1151px) {
+    .nav-wrapper {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
 
+.nav-menu a {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #005555;
+    transition: color 0.3s ease;
+}
+
+    .nav-menu a:hover, .active-link {
+        color: #ed2424;
     }
 
-    .nav-menu a {
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 1.2rem;
-        transition: color 0.3s ease;
-        padding: 0rem 0;
-        color: #005555;
-        font-family: 'Poppins', sans-serif;
-        
+    .nav-menu a.active-link {
+        color: #ed2424 !important;
+        font-weight: 600;
     }
 
-        .nav-menu a:hover {
-            color: #ed2424;
-        }
 
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #ed2424;
-            transition: width 0.3s ease;
-        }
+/* --- Action Buttons --- */
+.header-actions {
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+}
 
-        .nav-menu a:hover::after {
-            width: 100%;
-        }
+.login-btn {
+    text-decoration: none;
+    font-weight: 600;
+    color: #005555;
+    padding: 0.6rem 1.2rem;
+    border: 2px solid #005555;
+    border-radius: 50px;
+    background: transparent;
+    cursor: pointer;
+}
 
+.contact-btn {
+    text-decoration: none;
+    font-weight: 600;
+    color: white;
+    background: #ed2424;
+    padding: 0.7rem 1.8rem;
+    border-radius: 50px;
+}
 
-/* Mobile Menu Toggle */
+/* --- Hamburger Toggle --- */
 .menu-toggle {
     display: none;
     flex-direction: column;
@@ -167,290 +132,85 @@ body {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem;
-
+    margin-left: auto;
+    z-index: 2000;
 }
 
     .menu-toggle span {
         width: 28px;
         height: 3px;
-        background: #1f2937;
+        background: #005555;
         border-radius: 2px;
         transition: all 0.3s ease;
     }
 
-/* Demo Section */
-.demo-section {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 50%, #fef3c7 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+    .menu-toggle.open span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
 
+    .menu-toggle.open span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.open span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+/* --- Mobile Only --- */
+.mobile-only-action {
+    display: none;
 }
 
-    .demo-section::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="%23d97706" stroke-width="1" opacity="0.1"/></svg>');
-        background-size: 100px 100px;
-    }
-
-.demo-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    color: #1f2937;
-    font-family: 'Inter', sans-serif;
-
-}
-
-    .demo-content h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .demo-content p {
-        font-size: 1.25rem;
-        color: #6b7280;
-        font-family: 'Inter', sans-serif;
-    }
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-    .nav-menu {
-        gap: 1.5rem;
-    }
-}
-
-@media (max-width: 768px) {
+/* --- RESPONSIVE SWITCH --- */
+@media (max-width: 1150px) {
     .header {
-        padding: 1rem 1.5rem;
-    }
-
-    .nav-menu {
-        position: fixed;
-        top: 80px;
-        left: 0;
-        right: 0;
-        background: white;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 2rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-
-        .nav-menu.active {
-            transform: translateX(0);
-        }
-
-    .menu-toggle {
-        display: flex;
-    }
-
-    .signup-btn {
         width: 100%;
-        margin-top: 1rem;
-    }
-
-    .demo-content h1 {
-        font-size: 2rem;
-    }
-}
-
-/* Tablet (small desktops / iPad) */
-@media (max-width: 1024px) {
-    .header {
-        padding: 1rem 2rem;
-        width: 95%;
-        border-radius: 40px;
-    }
-
-    .nav-menu {
-        gap: 1.5rem;
-        font-size: 1rem;
-    }
-
-    .contact-btn {
-        padding: 0.6rem 1.2rem;
-        font-size: 0.9rem;
-    }
-}
-
-/* Mobile (phones and small tablets) */
-@media (max-width: 768px) {
-    .header {
-        padding: 1rem;
-        width: 100%;
-        border-radius: 0;
         top: 0;
-        left: 0;
-        right: 0;
-        opacity: 1;
+        border-radius: 0;
+        height: 70px;
     }
 
-    .header-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    /* Logo smaller */
-    .logo-icon {
-        width: 80px;
-        height: auto;
-    }
-
-    .logo-text {
-        font-size: 1.2rem;
-    }
-
-    /* Nav menu */
-    .nav-menu {
-        position: fixed;
-        top: 70px; /* below header */
-        left: 0;
-        right: 0;
-        background: #ffffff;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 2rem 0;
-        gap: 1.5rem;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 999;
-    }
-
-        .nav-menu.active {
-            transform: translateX(0);
-        }
-
-        .nav-menu a {
-            font-size: 1.1rem;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-        }
-
-            .nav-menu a::after {
-                bottom: -5px;
-            }
-
-    /* Contact button */
-    .contact-btn-container {
-        display: none; /* optional: move contact inside menu for mobile */
-    }
-
-    /* Mobile Menu Toggle */
-    .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 5px;
-    }
-
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-        }
-}
-
-/* Small mobile (portrait phones) */
-@media (max-width: 480px) {
-    .nav-menu {
-        padding: 1.5rem 0;
-        gap: 1rem;
-    }
-
-        .nav-menu a {
-            font-size: 1rem;
-        }
-
-    .menu-toggle span {
-        width: 20px;
-    }
-
-    .logo-icon {
-        width: 60px;
-    }
-
-    .logo-text {
-        font-size: 1rem;
-    }
-}
-
-/* Container for the right-side buttons */
-.header-actions {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    margin-left: auto; /* Pushes everything to the right */
-    position: relative;
-    z-index: 1001;
-}
-
-/* Login Button - Outline Style */
-.login-btn {
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #005555;
-    padding: 0.6rem 1.2rem;
-    border: 2px solid #005555;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-}
-
-    .login-btn:hover {
-        background: #005555;
-        color: white;
-    }
-
-/* Contact Button - Solid Style */
-.contact-btn {
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: white;
-    background: #ed2424;
-    padding: 0.7rem 1.8rem;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    font-family: 'Poppins', sans-serif;
-    box-shadow: 0 4px 15px rgba(237, 36, 36, 0.2);
-}
-
-    .contact-btn:hover {
-        background: #c21d1d;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(237, 36, 36, 0.3);
-    }
-
-/* Responsive Fixes */
-@media (max-width: 768px) {
     .header-actions {
-        display: none; /* Hide buttons on mobile top bar */
-    }
-
-    /* Optional: If you want them visible in the mobile menu, 
-       you'd add them to the .nav-menu list in JSX instead */
-
-    .header.scrolled .header-actions {
         display: none;
     }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .nav-wrapper {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease;
+        z-index: 1500;
+    }
+
+        .nav-wrapper.active {
+            transform: translateY(0);
+        }
+
+    .nav-menu {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+        .nav-menu a {
+            font-size: 1.5rem;
+        }
+
+    .mobile-only-action {
+        display: block;
+        margin-top: 10px;
+    }
 }
-
-
-
-
 
 
 
@@ -1561,9 +1321,193 @@ h1.cyb-anim-quote-fade,
     }
 }
 
+/* --- OPTIMIZED MOBILE DESIGN --- */
 
+@media (max-width: 968px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Stack vertically */
+        padding: 40px 20px;
+        gap: 30px;
+    }
 
+    .left-side {
+        grid-template-columns: 1fr 1fr; /* Keep side-by-side images on tablets */
+        gap: 15px;
+        max-width: 100%;
+    }
 
+    .about-box {
+        grid-row: auto; 
+        grid-column: span 2; /* Make title box full width */
+        padding: 30px;
+    }
+
+    .about-box h2 {
+        font-size: 32px;
+        text-align: center;
+        br { display: none; } /* Put ABOUT US on one line */
+    }
+}
+
+@media (max-width: 600px) {
+    .about-section {
+        max-height: none; /* Allow scrolling on mobile */
+    }
+
+    .left-side {
+        grid-template-columns: 1fr; /* Stack images on phones */
+        gap: 10px;
+    }
+
+    .about-box {
+        grid-column: span 1;
+        padding: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* Make images shorter and wider for phone screens */
+    .image-box {
+        min-height: 150px; 
+        width: 100%;
+    }
+
+    /* Hide one image on very small screens to keep the focus on text */
+    .image-bottom {
+        display: none; 
+    }
+
+    .right-side {
+        padding: 0;
+        text-align: center; /* Center text for modern mobile feel */
+    }
+
+    .right-side h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .aboutStory {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: justify; /* Keeps text clean */
+    }
+
+    .read-more {
+        justify-content: center; /* Center the button */
+        width: 100%;
+    }
+}
+
+/* --- ANIMATION TWEAKS FOR MOBILE --- */
+@media (max-width: 768px) {
+    /* Prevent horizontal overflow during slide animations */
+    .cyb-anim-img-slide-left, 
+    .cyb-anim-img-slide-right {
+        transform: translateY(20px); /* Slide up instead of left/right on mobile */
+        animation-name: cybTitleLift; 
+    }
+}
+
+/* --- OPTIMIZED MOBILE DESIGN --- */
+
+@media (max-width: 968px) {
+    .content-wrapper {
+        grid-template-columns: 1fr; /* Stack vertically */
+        padding: 40px 20px;
+        gap: 30px;
+    }
+
+    .left-side {
+        grid-template-columns: 1fr 1fr; /* Keep side-by-side images on tablets */
+        gap: 15px;
+        max-width: 100%;
+    }
+
+    .about-box {
+        grid-row: auto; 
+        grid-column: span 2; /* Make title box full width */
+        padding: 30px;
+    }
+
+    .about-box h2 {
+        font-size: 32px;
+        text-align: center;
+        br { display: none; } /* Put ABOUT US on one line */
+    }
+}
+
+@media (max-width: 600px) {
+    .about-section {
+        max-height: none; /* Allow scrolling on mobile */
+    }
+
+    .left-side {
+        grid-template-columns: 1fr; /* Stack images on phones */
+        gap: 10px;
+    }
+
+    .about-box {
+        grid-column: span 1;
+        padding: 25px;
+        margin-bottom: 10px;
+    }
+
+    /* Make images shorter and wider for phone screens */
+    .image-box {
+        min-height: 150px; 
+        width: 100%;
+    }
+
+    /* Hide one image on very small screens to keep the focus on text */
+    .image-bottom {
+        display: none; 
+    }
+
+    .right-side {
+        padding: 0;
+        text-align: center; /* Center text for modern mobile feel */
+    }
+
+    .right-side h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .aboutStory {
+        font-size: 18px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .description {
+        font-size: 14px;
+        line-height: 1.6;
+        text-align: justify; /* Keeps text clean */
+    }
+
+    .read-more {
+        justify-content: center; /* Center the button */
+        width: 100%;
+    }
+}
+
+/* --- ANIMATION TWEAKS FOR MOBILE --- */
+@media (max-width: 768px) {
+    /* Prevent horizontal overflow during slide animations */
+    .cyb-anim-img-slide-left, 
+    .cyb-anim-img-slide-right {
+        transform: translateY(20px); /* Slide up instead of left/right on mobile */
+        animation-name: cybTitleLift; 
+    }
+}
 
 
 
