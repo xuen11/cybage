@@ -100,16 +100,16 @@ const ModernTechIntroV4 = () => {
                         </p>
                     </div>
 
-                    <div className="data-points">
-                        <div className="point">
-                            <span className="label">SYSTEM STATUS</span>
-                            <span className="val pulse">OPTIMAL</span>
-                        </div>
-                        <div className="point">
-                            <span className="label">EST. FOUNDATION</span>
-                            <span className="val">2017</span>
-                        </div>
-                    </div>
+                    {/*<div className="data-points">*/}
+                    {/*    <div className="point">*/}
+                    {/*        <span className="label">SYSTEM STATUS</span>*/}
+                    {/*        <span className="val pulse">OPTIMAL</span>*/}
+                    {/*    </div>*/}
+                    {/*    <div className="point">*/}
+                    {/*        <span className="label">EST. FOUNDATION</span>*/}
+                    {/*        <span className="val">2017</span>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
 
                 {/* Right Side: Image Display with UI Decorations */}
@@ -130,12 +130,12 @@ const ModernTechIntroV4 = () => {
                         </div>
                     </div>
 
-                    <div className="bottom-action">
-                        <div className="scroll-hint">
-                            <span className="scroll-line"></span>
-                            SYSTEMS ARCHITECTURE V4.0
-                        </div>
-                    </div>
+                    {/*<div className="bottom-action">*/}
+                    {/*    <div className="scroll-hint">*/}
+                    {/*        <span className="scroll-line"></span>*/}
+                    {/*        SYSTEMS ARCHITECTURE V4.0*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </div>
             </div>
 
